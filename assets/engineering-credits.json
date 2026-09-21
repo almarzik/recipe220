@@ -1,0 +1,67 @@
+[
+  {
+    "source": "Resources/Textures/SS220/Structures/Storage/canister.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Frezon canister modified from tgstation, some assets taken from tgstation at commit https://github.com/tgstation/tgstation/commit/f8581a636acfc1517611a680b7711a74fc7ef335. New Canisters by AftrLite(Github), inspired by CEV-Eris sprites at https://github.com/discordia-space/CEV-Eris/commit/476e374cea95ff5e8b1603c48342bf700e2cd7af. Other assets taken from paradise at https://github.com/ParadiseSS13/Paradise/commit/2fd9200036dd18a56e6887f8090d5dc0477fc6f3."
+  },
+  {
+    "source": "Resources/Textures/SS220/Structures/Piping/Atmospherics/thermomachine.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Sprite by by AftrLite(Github)"
+  },
+  {
+    "source": "Resources/Textures/SS220/Structures/Power/Generation/Supermatter/crystal.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation"
+  },
+  {
+    "source": "Resources/Textures/SS220/Structures/Power/Generation/Supermatter/smemitter.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Skyrat-tg at https://github.com/Skyrat-SS13/Skyrat-tg/commit/f9e3b58ecd64fa061f83420689bd90bfa3a4c185 & modified by github:Morb0 & recolored for SS220 by Alwayswannahunt (github)"
+  },
+  {
+    "source": "Resources/Textures/SS220/Structures/Piping/Atmospherics/pipe.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "Sprited by MIXnikita (Github) for SS220"
+  },
+  {
+    "source": "Resources/Textures/SS220/Structures/Piping/Atmospherics/gasmixer.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "Sprited by MIXnikita (Github) for SS220"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Atmos/gasanalyzer.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from baystation at https://github.com/Baystation12/Baystation12/commit/ded74aff42136a7953c551a2a94cebc81f62f9fb, Inhand sprites by onesch"
+  },
+  {
+    "source": "Resources/Textures/SS220/Structures/Piping/Atmospherics/gasfilter.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "Sprited by MIXnikita (Github) for SS220"
+  },
+  {
+    "source": "Resources/Textures/SS220/Structures/Piping/Atmospherics/pump.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "Sprited by MIXnikita (Github) for SS220"
+  },
+  {
+    "source": "Resources/Textures/SS220/Structures/Piping/Atmospherics/scrubber.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "Sprited by MIXnikita (Github) for SS220"
+  },
+  {
+    "source": "Resources/Textures/Structures/Machines/gasrecycler.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by Peptide90 for SS14"
+  },
+  {
+    "source": "Resources/Textures/SS220/Structures/Piping/Atmospherics/condenser.rsi",
+    "license": "CC0-1.0",
+    "copyright": "Created by EmoGarbage404 (github) for Space Station 14, edited by chromiumboy. State pipe resprited by MIXnikita (Github)"
+  },
+  {
+    "source": "Resources/Textures/SS220/Structures/Piping/Atmospherics/vent.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "Sprited by MIXnikita (Github) for SS220"
+  }
+]

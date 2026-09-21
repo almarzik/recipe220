@@ -1,0 +1,742 @@
+[
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/aloe.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce sprites created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Drinks/aloe.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "https://github.com/discordia-space/CEV-Eris/raw/f7aa28fd4b4d0386c3393d829681ebca526f1d2d/icons/obj/drinks.dmi. Fill levels by Tayrtahn on GitHub."
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/fly_amanita.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, inhands by mubururu_ (github), produce created by Chaoticaa (GitHub), Growth stages, harvest, and dead modified by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/blue_pumpkin.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/5d507cfbad6f73d1beaba66d93f31f893adb3a84, modified by potato1234_x (github), inhands by mubururu_ (github), Growth, harvest, and dead created by Chaoticaa (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/meat.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and modified by Swept, potato1234x and deltanedas at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa, snail by IproduceWidgets (github) and Kezu (discord), anomalymeat/cooked by august-sun, dragoncutlet, dragoncutlet_veins, dragoncutlet-cooked and dragon-cooked by JuneSzalkowska (discord), raw and cooked patty taken from tgstation at https://github.com/tgstation/tgstation/commit/b83c7deee4c91df4de130db242facce20308aa8a. A lot of inhands by Orsoniks."
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/Baked/cake.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and modified by Swept at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa, inhands by mubururu_ (github), cotton cake sprites by DispenserG0inUp, berry delighht sprites by FairlySadPanda (Github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/orange.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github), seed.png modified from https://github.com/space-wizards/space-station-14/pull/23210/files#diff-1ee24e9bb4023f490a3f87c861b65e459bd3fda10e688471cdf72b8a8aab381b by Chaoticaa (github), Growth stages, harvest, dead, and produce created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/burger.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and modified by Swept and potato1234x at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa, ian.png created by EmoGarbage, mothroach.png created by TurboTracker, screwed by TheShuEd. Inhands by Tiniest Shark (Github)"
+  },
+  {
+    "source": "Resources/Textures/Mobs/Species/Human/organs.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "brain, ears, eyeball-l, eyeball-r, heart-on, heart-off, kidney-l, kidney-r, liver, lung-l, lung-r, stomach, tongue, taken from /tg/station 13 at https://github.com/tgstation/tgstation/commit/c4b7f3c41b6742aca260fe60cc358a778ba9b8c8 | appendix, appendix-inflamed, muscle, nerve, vessel taken from CEV-Eris at https://github.com/discordia-space/CEV-Eris/commit/476e374cea95ff5e8b1603c48342bf700e2cd7af | inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/ingredients.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and baystation and modified by potato1234x at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24 and https://github.com/Baystation12/Baystation12/commit/a6067826de7fd8f698793f6d84e6c2f1f9b1f188. Tofu and tofu-slice were created by Discord user rosysyntax#6514. Chevrelog and chevredisk created by Github user deathride58, tortilladough tortillaflat and tortillaslice added by Phunny, butter-slice and croissant-raw taken from tgstation at commit https://github.com/tgstation/tgstation/commit/7ffd61b6fa6a6183daa8900f9a490f46f7a81955, cotton made by mlexf (discord 1143460554963427380). Croissant-raw-cotton, cotton-dough-slice and cotton-dough-rope by JuneSzalkowska, cloth-box by Janet Blackquill <uhhadd@gmail.com> 2024. Cheese wedge inhand by Orsoniks. Opened variants of olive oil, mayo and cornmeal, flour, rice and sugar bags by korczoczek, based on the unopened sprites"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/Baked/bread.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and modified by potato1234x at https://github.com/tgstation/tgstation/commit/0631fe5bde73a68b4c12bdfa633c30b2cee442d5. Crostini created by Github user deathride58, baguette taken from tgstation at commit https://github.com/tgstation/tgstation/commit/7ffd61b6fa6a6183daa8900f9a490f46f7a81955, cotton made by mlexf (discord 1143460554963427380). Cotton baguette and crostini variants by JuneSzalkowska. Batard by SurrealShibe (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/eggplant.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github), produce modified from https://github.com/space-wizards/space-station-14/commit/484eb0bba44d3e014873e7d7026a99d7ba56f7b9#diff-5b9a7a38ef618b5f482f5baf4bb8db27dc87f9af7602d67cae9133e624aa3f91 by Chaoticaa (GitHub), Growth, harvest, and dead created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/onion.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/9b0c2e771e9d2442dd7d21c019b970c1299b5cf4, inhands by mubururu_ (github), slice modified from https://github.com/space-wizards/space-station-14/pull/3436/files#diff-65d1e265b787136da82b8e8b56ede11fdb879c31f9d14b4236d33a9a89d6a815 by Chaoticaa (GitHub), Growth stages, harvest, dead, and produce created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/meals.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24, taco from https://github.com/ss220-space/Paradise/commit/6c9bd827610433093a79d814b96bd50f9cf12eec, corn in butter from im_kreks"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/banana.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/6be7633abca9f1a51cab1020500cf0776ce78e5c, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub), On-head sprites by FlipBrooke,."
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/plates.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and modified by Swept at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa. Muffin-tin sprite modified from the original tin sprite by RumiTiger. Plate inhand by Orsoniks."
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Drinks/sugarglass.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by RumiTiger"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/Baked/misc.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and modified by Swept at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa. Chevrechaud created by Github user deathride58, croissant taken from tgstation at commit https://github.com/tgstation/tgstation/commit/7ffd61b6fa6a6183daa8900f9a490f46f7a81955. Muffin-chocolate, muffin-banana and muffin-cherry sprites modified from the original muffin sprite by RumiTiger. Chevrechaud-cotton and croissant-cotton created by JuneSzalkowska. Grilled-cheese created by AdipemDragon, take from tgstation at commit https://github.com/tgstation/tgstation/commit/716c6db05ab9df28fee81ceb7cf2b6c25f21176d. Grilled-cheese-cotton modified from grilled-cheese by MadeOfHeartAndStone on Discord."
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/chili.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce sprites created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/cabbage.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/b459ea3fdee965bdc3e93e7983ad7fa610d05c12#diff-3fdb6bdffec70eb17e6315b5cc5447b4cc73d39f583f077f064ad70f286138fa, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Fun/crayons.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and modified by Swept at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24, tweaked by Ubaser, electric crayon by Kittygyat"
+  },
+  {
+    "source": "Resources/Textures/Objects/Misc/flare.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/0f6496a55ceefa0f1bf1668fcef49b5182471695"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/ambrosia_vulgaris.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/bowl.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and modified by Swept at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa. escargot from tgstation at https://github.com/tgstation/tgstation/commit/7ffd61b6fa6a6183daa8900f9a490f46f7a81955. Fills created by potato1234_x"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/tomato.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13 at 1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce sprites created by Chaoticaa (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/chanterelle.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/berries.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation: https://github.com/tgstation/tgstation/commit/696dfcc59c9e65e7bbe3923d1f7e880ea384783f, inhands by mubururu_ (github), Growth, harvest, and dead sprites created by Chaoticaa (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/snacks.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24, from Shiptest at commit https://github.com/shiptest-ss13/Shiptest/commit/498d1b32708c014044ca7b9cbb1766d8ecef7cf0, chocolate from goonstation, chinese from paradise, ticket by peptide, cnds-trash based on boritos-trash and syndicakes modified by potato1234x, ramen from https://github.com/discordia-space/CEV-Eris/raw/f7aa28fd4b4d0386c3393d829681ebca526f1d2d/icons/obj/drinks.dmi. Some inhands by Orsoniks."
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Consumable/Food/meat.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from TG Station at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/food/meat.dmi. Spider and snake grilled, fish-cooked and xeno-cooked sprites are made by TonyBigShoes (github) for SS220. Rabbit meat`s sprited by EstKemran (Github)"
+  },
+  {
+    "source": "Resources/Textures/Corvax/Clothing/Head/Hats/warden_alt.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/28d0be60aa8bbe1ca87a5d129487bb6f60839ac4"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Consumable/Food/burger.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and modified by Swept and potato1234x at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa. Bnuuy by EstKemran (Github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/potato.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github), Growth stages, dead, harvest, and produce created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Specific/Hydroponics/beet.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "SuBL for SS220"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Consumable/Food/bowl.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Added by gabova(discord). Olivier by Motoiks (discord/GitHub). Sawdust Porridge/Soup by Theywod (discord/GitHub). Bowl sprite taken from tgstation and modified by Swept at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/Baked/brownie.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24, brownie-batch by Velcroboy"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/glasstle.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/cannabis.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/696dfcc59c9e65e7bbe3923d1f7e880ea384783f & dried recolored"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/Baked/bagel.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Bagel and BagelPoppy were created by DrEnzyme. Bagel-cottondough by JuneSzalkowska."
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/poppy.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, equipped-HELMET taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e, Poppy produce and harvest sprites modified by Chaoticaa (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Consumable/Food/Baked/misc.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "waffles sprited by @mishutka09, tray sprited by EstKemran (Github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/pea.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/a5e6db8f99b436b643bd3b76fa131ac074dfd856, inhands by mubururu_ (github), Growth, harvest, dead, and produce created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/carrot.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/grape.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/b459ea3fdee965bdc3e93e7983ad7fa610d05c12, Growth stages, harvest, dead, and produce created by Chaoticaa (GitHub), inhands by mubururu_ (github), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/Baked/pie.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24, the pumpkin and pumpkin slice are made by ss14nekow (Mute Maid), the mime tart slice and banana cream pie slice are made by rosysyntax."
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/lemoon.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken and resprite from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/tea_plant.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/da3da71e29400c8c2879037ae8d74e690a6fe604, produce modified by potato1234x (github) for ss14"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/cherry.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068 and remade by RumiTiger, Growth stages, harvest, dead, and produce sprites created by Chaoticaa (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/pyrotton.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Drawn by Ubaser, using the cotton sprites as a base. inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/cotton.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/e245d374b2976c73d0aff37cf4a443d2e75c2f57, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Materials/materials.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24 , bear pelt remade by Alekshhh, wood sprite modified by MisterMecky, wood_2 and wood_3 made by MisterMecky based on wood sprite, cardboard sprites made by MisterMecky, bananium, bananium_1 and peel made by brainfood1183 (github) for ss14. Pyrotton sprites are drawn by Ubaser, using the cotton material sprites as a base. Bananium, cardboard, corgihide, cloth, cotton, pyrotton, bones and durathread inhands by mubururu_ (github). Bananium peel's on-head sprite by FlipBrooke, based on the bananaium peel sprite."
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Drinks/aleglass.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "https://github.com/discordia-space/CEV-Eris/raw/f7aa28fd4b4d0386c3393d829681ebca526f1d2d/icons/obj/drinks.dmi"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/pineapple.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/9b0c2e771e9d2442dd7d21c019b970c1299b5cf4, inhands by mubururu_ (github), slice.png modified from https://github.com/space-wizards/space-station-14/pull/31012/commits/f840c12356368798ab2dbe7de8232ed8181d29d6#diff-2ca7537b4a0f25517344be1d3a98d6cc33a3176c0af385bc5882b96d77afc64d by Chaoticaa (GitHub), Growth stages, harvest, dead, and produce created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/Baked/pizza.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and modified by Swept at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa, Spicy Rock Pizza modified from margherita pizza by mkanke, cotton made by mlexf (discord 1143460554963427380), world peazza modified from margherita by MisterImp (GitHub), spicy pizza is modified from meat pizza by jellycrab. Inhands ported over from Starlight at https://github.com/ss14Starlight/space-station-14/pull/72 with edits by Orsoniks."
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/extradimensional_orange.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068 and https://github.com/tgstation/tgstation/commit/ead6d8d59753ef033efdfad17f337df268038ff3 and modified by slarticodefast, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/nettle.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/taco_sequence.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by TheShuEd, rat Taken from https://github.com/tgstation/tgstation/commit/e15c63d100db65eaaa5231133b8a2662ff439131#diff-8dd94e19fdb2ff341b57e31bce101298 and edited by TheShuEd"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/taco.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Added by Phunny, dragon taco modified from beef taco by MisterImp (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Drinks/wineglass.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "https://github.com/discordia-space/CEV-Eris/raw/f7aa28fd4b4d0386c3393d829681ebca526f1d2d/icons/obj/drinks.dmi. Fill levels by Tayrtahn on GitHub."
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Consumable/Food/caramel.rsi/",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "sprited by dinazewwr (Discord) for SS220"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Drinks/grenadineglass.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "https://github.com/discordia-space/CEV-Eris/raw/f7aa28fd4b4d0386c3393d829681ebca526f1d2d/icons/obj/drinks.dmi. Fill levels by Tayrtahn on GitHub."
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Drinks/ginvodkaglass.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "https://github.com/discordia-space/CEV-Eris/raw/f7aa28fd4b4d0386c3393d829681ebca526f1d2d/icons/obj/drinks.dmi. Fill levels by Tayrtahn on GitHub."
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Drinks/lemonjuiceglass.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by RumiTiger"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Consumable/Food/caramel_rooster.rsi",
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Made by piotrthetchaikowsky (github)"
+  },
+  {
+    "source": "Resources/Textures/Clothing/Head/Hats/wizardhat.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e. equipped-HELMET-dog modified from equipped-HELMET by Sparlight (GitHub). In-hand by ThatGuyUSA (github)."
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/noodles.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and modified by Swept at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa"
+  },
+  {
+    "source": "Resources/Textures/Clothing/Neck/Misc/lawyerbadge.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "taken from tg git at https://github.com/tgstation/tgstation/blob/master/icons/obj/clothing/accessories.dmi"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Drinks/orangejuiceglass.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by RumiTiger"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Consumable/Food/Baked/baked.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Rabbit_baked sprited by EstKemran (Github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Materials/Sheets/other.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24  and skyrat-tg at https://github.com/Skyrat-SS13/Skyrat-tg/commit/72ef384db938dfef549413970258cda93d42dafb, plasma_2 & plasma_3 combined from plasma"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/bloonion.rsi",
+    "license": "CC0-1.0",
+    "copyright": "Made by Thinbug for space station 14 :33"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/bungo.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation: https://github.com/tgstation/tgstation/commit/b3399ffe39f9ace645123c98323c4832412cc641"
+  },
+  {
+    "source": "Resources/Textures/SS220/Clothing/Mask/clown.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e. Reptilian edit by Nairod(Github). equipped-MASK-vox state taken from /vg/station at commit https://github.com/vgstation-coders/vgstation13/commit/4638130fab5ff0e9faa220688811349d3297a33e and slightly modified by Flareguy, resprite by dinazewwr (Discord) for SS220 | vulpkanin version taken from Paradise station at https://github.com/ParadiseSS13/Paradise/commit/f0fa4e1fd809482fbc104a310aa34cebf7df157d edited by Floofers | Wigless variants edited by Solid_Syn and modified by dinazewwr (Discord) for SS220"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Misc/module.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "Made by SkaldetSkaeg for SS220"
+  },
+  {
+    "source": "Resources/Textures/Objects/Misc/module.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation at 0d9c9a8233dfc3fc55edc538955a761a6328bee0, generic, service, command, science, security, medical, supply, and engineering taken from shiptest at https://github.com/shiptest-ss13/Shiptest/pull/1473, additional sprites created by EmoGarbage404, cpu_syndicate sprite derived from previous examples and created by Alpaccalypse at https://github.com/space-wizards/space-station-14/pull/34104, cpu_wizard by ScarKy0, datadisk_t2_marks, datadisk_t3_marks, datadisk_t2_border and datadisk_t3_border by aliser"
+  },
+  {
+    "source": "Resources/Textures/Mobs/Pets/cat.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "https://github.com/tgstation/tgstation/commit/53d1f1477d22a11a99c6c6924977cd431075761b, syndicat created by Aleksh (discord); cak_rest, cat_rest, cat2_rest, kitten_rest, spacecat_rest resprited by ci24v3n (Discord)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/rainbow_cannabis.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13 at 1dbcf389b0ec6b2c51b002df5fef8dd1519f8068 and modified by potato1234_x"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/spacemans_trumpet.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a seed modified by potato1234_X (github) for ss14, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Clothing/Head/Hats/catears.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/fc9b91e3cb51b20987aab9630e73ac587bc00f3f"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/onion_red.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/9b0c2e771e9d2442dd7d21c019b970c1299b5cf4, inhands by mubururu_ (github), seed modified from https://github.com/space-wizards/space-station-14/pull/23210/files#diff-6b89a02e399bc4dd9c50c16ad274a353a92c8a0f462083fab0c1e5045d957ad2 by Chaoticaa (GitHub), slice modified from https://github.com/space-wizards/space-station-14/pull/3436/files#diff-65d1e265b787136da82b8e8b56ede11fdb879c31f9d14b4236d33a9a89d6a815 by Chaoticaa (GitHub), Growth, harvest, dead, and produce created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/blood_tomato.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13 at 1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce sprites created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Drinks/bloodglass.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Drawn by Ubaser. Fill levels by Tayrtahn on GitHub."
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Specific/Hydroponics/meatwheat.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "Made by Team SS220 Gabka, inlef"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/CultYogg/Botany/migomycete.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "By Gabbka for SS220"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/corn.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, Growth, dead, harvest, and produce created by Chaoticaa (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Consumable/Food/kulich.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "Made by TTTomaTTT for SS220"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/lime.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/lemon.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/watermelon.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/b459ea3fdee965bdc3e93e7983ad7fa610d05c12 and https://github.com/tgstation/tgstation/commit/ead6d8d59753ef033efdfad17f337df268038ff3, inhands by mubururu_ (github), slice.png modified from https://github.com/space-wizards/space-station-14/pull/14587/files#diff-3d6e5b157c429de7aa62396e8677d0a2fab073a2d6d6e796af4931cb8d979330 by Chaoticaa (GitHub), Growth stages, harvest, dead, and produce sprites Created by Chaoticaa (GitHub), inhand models resprited by DaGo (ss220)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/salami.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and modified by Velcroboy at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/holymelon.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/b459ea3fdee965bdc3e93e7983ad7fa610d05c12 and https://github.com/tgstation/tgstation/commit/ead6d8d59753ef033efdfad17f337df268038ff3 and modified by slarticodefast, inhands by mubururu_ (github), produce sprite modified by Chaoticaa (GitHub), Growth stages, harvest, and dead sprites created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Mobs/Pets/breaddog.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "taken from tgstation on commit https://github.com/tgstation/tgstation/commit/ce6f2724cd79fa7c916e97167f9eab61cbd0a8cb"
+  },
+  {
+    "source": "Resources/Textures/Structures/Specific/Anomalies/Cores/flesh_core.rsi",
+    "license": "CC0-1.0",
+    "copyright": "Created by TheShuEd (github) for ss14, inhands by TiniestShark (Github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Medical/medical.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from cev-eris at https://github.com/discordia-space/CEV-Eris/commit/740ff31a81313086cf16761f3677cf1e2ab46c93 and Taken from tgstation at https://github.com/tgstation/tgstation/blob/623290915c2292b56da11048deb62d758e1e3fb4/icons/obj/bloodpack.dmi, Blood pack redone by Ubaser. Taken from https://github.com/tgstation/tgstation/blob/a3568da5634e756d0849480104afda402c6f1c3c/icons/obj/medical/stack_medical.dmi. Tourniquet Sprite by PoorMansDreams, in-hand sprites of tourniquet, gauze, and bloodpack made by SeamLesss (github). Brutepack, ointment ant gauze resprited by okroshka59 (Discord) for SS220. Ointment Storage by TiniestShark (Github)"
+  },
+  {
+    "source": "Resources/Textures/SS220/Clothing/Mask/mime.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e. Reptilian edit by Nairod(Github). equipped-MASK-vox state taken from /vg/station at commit https://github.com/vgstation-coders/vgstation13/commit/4638130fab5ff0e9faa220688811349d3297a33e | vulpkanin version taken from Paradise station at https://github.com/ParadiseSS13/Paradise/commit/f0fa4e1fd809482fbc104a310aa34cebf7df157d and edited by Floofers. Modified by dinazewwr (Discord) for SS220"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/mimana.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/6be7633abca9f1a51cab1020500cf0776ce78e5c, inhands by mubururu_ (github). Mimana peel on-head sprite by FlipBrooke, based on the mimana item sprite."
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/world_pea.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/ead6d8d59753ef033efdfad17f337df268038ff3 and modified by slarticodefast, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Misc/monkeycube.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from cev-eris at https://github.com/discordia-space/CEV-Eris/raw/9c980cb9bc84d07b1c210c5447798af525185f80/icons/obj/food.dmi. box_kobold, box_variant and wrapper_kobold are edited versions of the raw sprites by Ubaser."
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/chilly.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/b459ea3fdee965bdc3e93e7983ad7fa610d05c12, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce sprites created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/wheat.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce sprites created by Chaoticaa (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/pumpkin.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/blob/5d507cfbad6f73d1beaba66d93f31f893adb3a84/icons/obj/hydroponics/harvest.dmi, carved sprites by ps3moira, inhands by mubururu_ (github), Growth stages, dead, and harvest sprites created by Chaoticaa (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/tobacco.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/696dfcc59c9e65e7bbe3923d1f7e880ea384783f"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/oat.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from vgstation and modified by Swept at https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, Growth stages, harvest, dead, and produce created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Corvax/Objects/Consumable/Drinks/kvass.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "https://github.com/TauCetiStation/TauCetiClassic/commit/c449d65dff642f44f3e0d8a312f70aec43ab2eae"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/egg.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from cev-eris at https://github.com/discordia-space/CEV-Eris/raw/9c980cb9bc84d07b1c210c5447798af525185f80/icons/obj/food.dmi"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/ambrosia_deus.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/bd870d649cc8ac9d8af2fbc046af4a79afb5ab28, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Corvax/Objects/Consumable/Food/bowl.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Pelmeni created by SonicDC#9046"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/anomaly_berry.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by TheShuEd for Space Station 14, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/gatfruit.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Consumable/Food/mushroom.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from space-station-14 at commit https://github.com/space-wizards/space-station-14/commit/8eff480c2960c80fb448ea876deee21aa43bad93, resprited for SS220 by TonyBigShoes (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/golden_apple.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce sprites created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Drinks/doctorsdelightglass.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "https://github.com/discordia-space/CEV-Eris/raw/f7aa28fd4b4d0386c3393d829681ebca526f1d2d/icons/obj/drinks.dmi. Fill levels by Tayrtahn on GitHub."
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/cocoa.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13. produce-beans drawn by FillerVK, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/koibean.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/696dfcc59c9e65e7bbe3923d1f7e880ea384783f, Growth, harvest, and dead created by Chaoticaa (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Misc/spaceshroom.rsi",
+    "license": "CC0-1.0",
+    "copyright": "Created by @UbaserB (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/lily.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a seed modified by potato1234_X (github) for ss14, equipped-HELMET taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e and changed hue, Harvest, and produce modified by Chaoticaa (github)"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/CultYogg/Botany/lurbo_shroom.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "By MIXNikita for SS220"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/capfruit.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, redrawn by Ubaser, inhands by mubururu_ (github)."
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/CultYogg/Botany/sidious_shroom.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "By MIXNikita for SS220"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/blue_tomato.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13 at 1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce sprites created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/soybeans.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/BeeStation/BeeStation-Hornet/commit/bd870d649cc8ac9d8af2fbc046af4a79afb5ab28, produce modified from https://github.com/space-wizards/space-station-14/pull/13989/files#diff-a55f533faecbd8741098e25f259fa528683197ccc0e99a77f0f592a3ae2faa03 by Chaoticaa (GitHub), Growth, harvest, and dead created by Chaoticaa (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/laughin_pea.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/a5e6db8f99b436b643bd3b76fa131ac074dfd856 seed modified by potato1234_x (github) for ss14, inhands by mubururu_ (github), Growth, harvest, dead, and produce created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/garlic.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/9f2e55e83cb93e7124d06c705d1942dfec63c93a, produce created by Chaoticaa (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/apple.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce sprites created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/Baked/donkpocket.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24. Stonk pocket by Tayrtahn on GitHub. Carp pocket by deltanedas (GitHub). Modified by ps3moira (GitHub). 'moth-box' and 'moth' States by kosticia on GitHub"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Consumable/Food/snacks.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Brownie and nutribrick sprited by @mishutka09, chocolatebarwhite sprited by dinazewwr (discord) for SS220"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/breakfast.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Sprites created by DispenserG0inUp"
+  },
+  {
+    "source": "Resources/Textures/Clothing/OuterClothing/Misc/ghostsheet.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/pull/38809. Vox state by Flareguy for SS1"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/skewer.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation and modified by Swept at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa, skewer-holymelon edited from skewer-watermelon by slarticodefast"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/rice.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/b459ea3fdee965bdc3e93e7983ad7fa610d05c12, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Misc/stock_parts.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from BeeStation at commit https://github.com/BeeStation/BeeStation-Hornet/commit/3eed41635791f62b3f7b60f411e3c4427d842a15б, triphasic_scan_module.png modified by github:Morb0"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/sugarcane.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068, inhands by mubururu_ (github), Growth stages, harvest, dead, and produce sprites created by Chaoticaa (GitHub), inhands modified by Prole0 (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/death_nettle.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a"
+  },
+  {
+    "source": "Resources/Textures/Objects/Fun/bikehorn.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from vgstation at https://github.com/vgstation-coders/vgstation13/commit/125c975f1b3bf9826b37029e9ab5a5f89e975a7e, Modified by Archee1 (github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Materials/Shards/shard.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from cev-eris at https://github.com/discordia-space/CEV-Eris/commit/b5b4edd4e46efc2ee2d3c1ce5aff82d80ddc461e"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Drinks/colaglass.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by RumiTiger"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/galaxythistle.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Mobs/Animals/mothroach/mothroach.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from fulpstation at https://github.com/fulpstation/fulpstation/commit/edb232b692ec9f356ec554ea1971da552b9bc447. 'mothroach-moving' by MilenVolf"
+  },
+  {
+    "source": "Resources/Textures/Objects/Specific/Hydroponics/lingzhi.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, inhands by mubururu_ (github)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Consumable/Food/cottonburger.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by Wolfkey. Modified from bun taken from tgstation and modified by Swept and potato1234x at https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa, and Top and bottom bun edited by TheShuEd"
+  },
+  {
+    "source": "Resources/Textures/Objects/Weapons/Melee/baseball_bat.rsi",
+    "license": "CC-BY-NC-SA-3.0",
+    "copyright": "Taken from goonstation and modified by Swept at commit https://github.com/goonstation/goonstation/pull/3555/commits/b24eb6260647c0fcfe858268a26b6160bc50017a, wielded version by Easypoll, vertical icon sprite by TiniestShark"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Consumable/Food/cheburek.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Added by gabova(discord)"
+  },
+  {
+    "source": "Resources/Textures/Clothing/Shoes/Specific/clown.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/7e4e9d432d88981fb9bb463970c5b98ce85c0abe. equipped-FEET-vox state taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/31d6576ba8102135d058ef49c3cb6ecbe8db8a79/icons/mob/species/vox/shoes.dmi, resprite by dinazewwr (Discord) for SS220"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Consumable/Food/shawarma.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by gabova(discord), modified by Whitly / Meower"
+  },
+  {
+    "source": "Resources/Textures/Objects/Misc/moproach_shoes.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Sprites by Velken. Inhand versions modified from mop sprites from Easypoll. Mopshoes based from Galoshes from tgstation at commit https://github.com/tgstation/tgstation/commit/7e4e9d432d88981fb9bb463970c5b98ce85c0abe"
+  },
+  {
+    "source": "Resources/Textures/Mobs/Animals/mothroach/moproach.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from fulpstation at https://github.com/fulpstation/fulpstation/commit/edb232b692ec9f356ec554ea1971da552b9bc447. 'mothroach-moving' by MilenVolf, all edited by lzk228"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/CultYogg/Botany/nullification_shroom.rsi",
+    "license": "EULA/CLA with a hosting restriction, full text: https://raw.githubusercontent.com/SerbiaStrong-220/space-station-14/master/CLA.txt",
+    "copyright": "By MIXNikita for SS220"
+  },
+  {
+    "source": "Resources/Textures/SS220/Objects/Consumable/Food/meals.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from space-station-14 at commit https://github.com/space-wizards/space-station-14/commit/8eff480c2960c80fb448ea876deee21aa43bad93, resprited for SS220 by TonyBigShoes (GitHub)"
+  },
+  {
+    "source": "Resources/Textures/Objects/Materials/parts.rsi",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24. Inhands by mubururu_ (github)."
+  }
+]
