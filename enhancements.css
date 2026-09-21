@@ -1,0 +1,69 @@
+/* Recipe thumbnails use the first frame of the original RSI sprites. */
+.thumbnail{display:inline-block;position:relative;flex:0 0 26px;width:26px;height:26px;overflow:hidden;vertical-align:middle;border-radius:5px;background:#101a1b;image-rendering:pixelated}
+.thumbnail>span:not(.reagent-drop){position:absolute;inset:2px;background-repeat:no-repeat;background-position:0 0}
+.thumbnail.large{width:44px;height:44px;flex-basis:44px;border:1px solid #3a4c45;border-radius:8px}
+.thumbnail.fallback{display:inline-flex;align-items:center;justify-content:center;color:#9eae9d}
+.thumbnail .reagent-drop{width:12px;height:16px;display:block;border-radius:60% 40% 55% 45%;transform:rotate(35deg);border:1px solid #fff5;box-shadow:inset 2px 1px 0 #ffffff60}
+.recipe-title{display:flex;align-items:center;gap:10px;border:0;background:transparent;color:inherit;font:inherit;text-align:left;padding:0;line-height:1.4;width:100%;cursor:pointer}
+.recipe-title:hover>span:last-child{color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+.recipe-title .thumbnail{pointer-events:none}
+.tile-ingredients.with-thumbnails{display:flex;flex-wrap:wrap;gap:6px;-webkit-line-clamp:unset;overflow:visible;margin-bottom:16px}
+.ingredient-chip{display:inline-flex;align-items:center;gap:5px;max-width:100%;background:#142022;border:1px solid #2d3b3d;border-radius:6px;padding:3px 6px 3px 3px;line-height:1.4;font-size:11px}
+.ingredient-chip>span:last-child{overflow-wrap:anywhere}
+.ingredient-chip .thumbnail{width:23px;height:23px;flex-basis:23px;background:transparent}
+.tile-method{font-size:12px;line-height:1.6;color:#b6c9c7}
+.condition{font-size:12px;padding:5px 7px}
+.todo .recipe-title{gap:7px}
+.todo .thumbnail.large{width:36px;height:36px;flex-basis:36px}
+.todo .ingredients label{gap:6px}
+.chem-label{font-size:11px;font-weight:600;letter-spacing:.7px;color:var(--chem);margin:12px 0 7px}
+.ingredient-via{display:block;font-size:10px;color:#a69bc9;line-height:1.4;margin-top:2px}
+.chem-steps{margin-top:15px;border-top:1px solid #405044}
+.chem-steps ol{padding-left:22px;font-size:11px;color:#bfcfca}
+.chem-steps ol>li{padding:8px 0 8px 6px;border-left:2px solid #736a8f;margin-bottom:8px}
+.chem-steps li::marker{color:var(--chem)}
+.chem-steps li>p{font-size:11px;line-height:1.65;margin:6px 0;color:#aebfbd}
+.chem-steps .condition{font-size:10px}
+.chem-steps .recipe-conditions{margin:7px 0 0}
+.chem-steps small{font-size:10px;color:#9faeae}
+#recipe-preview{max-width:640px;padding:26px}
+#preview-title{flex:1;font-size:22px;line-height:1.4}
+.preview-hero{display:flex;gap:15px;align-items:center;margin:22px 0 17px;color:var(--muted);font-size:13px}
+.preview-hero .thumbnail.large{width:72px;height:72px;flex-basis:72px}
+.preview-ingredient{display:flex;gap:10px;align-items:center;flex:1;padding:9px 0;font-size:14px}
+#preview-content .quantity{font-size:13px}
+#preview-content .yield{font-size:13px;margin-top:15px}
+#preview-content .expand{padding:5px 8px;font-size:16px}
+#preview-content .ingredients li{min-height:45px}
+#toggle-workspace{white-space:nowrap;border-color:#546b4a;color:var(--accent)}
+/* Shared defaults also cover dynamically generated actions without a variant class. */
+button{appearance:none;-webkit-appearance:none;border:1px solid var(--line);border-radius:7px;background:#1d292c;color:var(--text);padding:10px 14px;font-family:inherit;font-size:12px;line-height:1.4;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s,opacity .15s}
+button:where(:not(:disabled):hover){background:#304044;border-color:#53665f}
+button:where(:not(:disabled):active){background:#263639}
+button:disabled{cursor:not-allowed;opacity:.45}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.primary:not(:disabled):hover{background:#d4f3ac;border-color:#d4f3ac;color:#18241a}
+.primary:not(:disabled):active{background:#afd779;border-color:#afd779}
+.secondary:not(:disabled):hover{background:#304044;border-color:#53665f}
+.quiet:not(:disabled):hover{background:#302828;color:#ffc1b4;border-color:#73544e}
+.workspace{position:relative;background:var(--bg);padding:14px 0;border-bottom:1px solid var(--line);scroll-margin-top:132px}
+.workspace-heading{position:sticky;top:58px;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 8px 18px #0003}
+.workspace-heading h1{font-size:17px;letter-spacing:-.3px;margin:0;line-height:1.4}
+.workspace .board-actions{margin-bottom:12px;flex-wrap:wrap}
+.workspace.is-collapsed{padding:0;border:0}
+.workspace #viewport{height:475px;min-height:120px;max-height:none;resize:vertical}
+.workspace-size{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:var(--muted)}
+.workspace-size input{width:100px;padding:6px;background:var(--panel);border:1px solid var(--line);border-radius:5px;color:var(--text);margin:0 5px}
+.page-tabs{position:sticky;top:0;z-index:200;display:flex;gap:8px;align-items:center;height:58px;padding:8px 4vw;background:var(--bg);border-bottom:1px solid var(--line)}
+.page-tab{border:1px solid var(--line);border-radius:7px;background:var(--panel);padding:10px 16px;color:var(--muted)}
+.page-tab[aria-pressed=true]{background:var(--accent);color:#152718;border-color:var(--accent)}
+#workspace-jump{margin-left:auto}
+.todo-controls{align-items:flex-start;flex-direction:column;gap:12px}
+.output-settings{width:100%}
+.output-settings .scale-control{justify-content:space-between;color:#c7d9cf;font-size:12px;gap:8px}
+.output-settings input{width:88px;max-width:100%;padding:7px;font-size:13px}
+.output-product{display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:11px;margin-bottom:10px}
+.output-product select{max-width:100%;width:100%}
+.output-settings .batch-note{margin:8px 0 0}
+#preview-content .output-settings{padding:12px;background:#142122;border:1px solid var(--line);border-radius:8px;margin:15px 0}
+@media(max-width:600px){#recipe-preview{padding:18px}#preview-title{font-size:18px}.board-actions{gap:6px}.board-actions button{padding:9px 11px}}

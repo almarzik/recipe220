@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10191c">
+  <title>Станция рецептов · SS14</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="enhancements.css">
+  <link rel="stylesheet" href="botany.css">
+  <link rel="stylesheet" href="players.css">
+  <link rel="stylesheet" href="compact.css">
+  <script src="recipes.js" defer></script>
+  <script src="chemistry.js" defer></script>
+  <script src="player-guides.js" defer></script>
+  <script src="chef-menu.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="botany.js" defer></script>
+  <script src="players.js" defer></script>
+  <link rel="stylesheet" href="security.css">
+  <script src="security-data.js" defer></script>
+  <script src="security.js" defer></script>
+  <link rel="stylesheet" href="scientist.css">
+  <script src="scientist-data.js" defer></script>
+  <script src="scientist.js" defer></script>
+  <link rel="stylesheet" href="engineering.css">
+  <script src="engineering-data.js" defer></script>
+  <script src="engineering.js" defer></script>
+  <script src="atmos-economy.js" defer></script>
+  <script src="supermatter.js" defer></script>
+  <link rel="stylesheet" href="sm-observer.css">
+  <script src="sm-observer.js" defer></script>
+  <script src="anomalies-data.js" defer></script>
+  <script src="anomalies.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a href="#" class="brand"><span class="brand-icon">✳</span><span>станция рецептов<small>SPACE STATION 14 / ЛИЧНЫЙ ВЕРСТАК</small></span></a>
+    <div class="database-status"><span></span> Из файлов вашей сборки <b id="total"></b></div>
+  </header>
+  <nav class="page-tabs" aria-label="Разделы сайта">
+    <button id="tab-recipes" class="page-tab" aria-pressed="true" aria-controls="catalog">Рецепты</button>
+    <button id="tab-botany" class="page-tab" aria-pressed="false" aria-controls="botany">Ботаника</button>
+    <button id="tab-players" class="page-tab" aria-pressed="false" aria-controls="players">От Игроков</button>
+    <button id="tab-security" class="page-tab" aria-pressed="false" aria-controls="security">СБ</button>
+    <button id="tab-scientist" class="page-tab" aria-pressed="false" aria-controls="scientist">Учёный</button>
+    <button id="tab-engineering" class="page-tab" aria-pressed="false" aria-controls="engineering">Инженерия</button>
+    <button id="workspace-jump" class="secondary">Рабочая область ↕</button>
+  </nav>
+  <main>
+    <div class="workspace-heading">
+      <h1 id="workspace-title">Рабочая область<span id="board-count">0</span></h1>
+      <button id="toggle-workspace" class="secondary" aria-expanded="true" aria-controls="workspace-content">Скрыть поле ↑</button>
+    </div>
+    <section class="workspace" aria-labelledby="workspace-title">
+      <div id="workspace-content">
+      <div class="board-actions"><button id="arrange" class="secondary">▦ Расставить</button><button id="clear-done" class="secondary">Убрать готовое</button><button id="clear" class="quiet">Очистить</button></div>
+      <div id="viewport" tabindex="0" aria-label="Рабочее поле. Прокручивайте, чтобы увидеть остальные карточки.">
+        <div id="board"><svg id="connections" aria-hidden="true"></svg><div id="empty-board"><span class="empty-symbol">＋</span><h2>Начните с одного рецепта</h2><p>Найдите его в каталоге ниже и добавьте на рабочее поле.<br>Кнопка <b>[+]</b> рядом с ингредиентом раскроет его рецепт.</p><a href="#catalog" class="empty-link">Перейти к каталогу ↓</a></div></div>
+      </div>
+      <div class="board-footer"><span><i class="dot"></i> <span id="save-status">Сохраняется в этом браузере</span></span><span>Тяните за шапку · [+] раскрывает ингредиент · стрелки двигают выбранную шапку</span></div>
+      <div class="workspace-size"><label>Высота поля <input id="workspace-height" type="number" min="120" step="50" aria-label="Высота рабочего поля в пикселях"> px</label><button id="workspace-size-reset" class="quiet">Обычный размер</button></div>
+      </div>
+    </section>
+    <section id="catalog" aria-labelledby="catalog-title">
+      <div class="catalog-heading"><div><div class="eyebrow">02 / КАТАЛОГ</div><h2 id="catalog-title">Что будем готовить?</h2></div><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Название, ингредиент или ID…" aria-label="Поиск рецептов"><kbd>/</kbd></label></div>
+      <div class="filters"><div id="categories" role="group" aria-label="Категории"></div><label class="subgroup-label">Раздел <select id="subgroup" aria-label="Раздел рецептов"></select></label></div>
+      <div id="chef-tools" hidden>
+        <div class="chef-actions"><span>Шефу: меню из разных разделов кулинарии</span><button id="chef-menu" class="primary">Составить меню из 10 блюд</button></div>
+        <details id="chef-produce"><summary>Меню из моих запасов</summary>
+          <p>Отметьте продукты из ШефВенда, урожай и животных, которые есть на вашей кухне. Учтём соки, нарезку и составные ингредиенты. Вода и посуда считаются доступными; количество запасов не рассчитывается. Наличие животных зависит от карты. Козье молоко не заменяет обычное; мясо животных требует разделки.</p>
+          <button id="stock-chefvend" class="secondary">Отметить ШефВенд</button>
+          <input id="produce-search" type="search" placeholder="Мука, молоко, коза, томат…" aria-label="Поиск по запасам кухни">
+          <div id="produce-options"></div>
+          <div class="chef-actions"><span id="produce-count" aria-live="polite">Выбрано: 0</span><button id="produce-clear">Сбросить выбор</button><button id="chef-produce-menu" class="primary" disabled>Составить меню из запасов</button></div>
+          <p id="chef-result" role="status"></p>
+        </details>
+      </div>
+      <div class="results-meta"><span id="result-count"></span><span>Точные количества · условия приготовления · цепочки ингредиентов</span></div>
+      <div id="recipes" class="recipe-grid"></div><button id="load-more" class="secondary load-more" hidden>Показать ещё</button>
+      <div id="no-results" hidden><h3>Таких рецептов не нашлось</h3><p>Попробуйте другое название или сбросьте фильтры.</p><button id="reset" class="secondary">Сбросить фильтры</button></div>
+    </section>
+    <section id="botany" hidden aria-labelledby="botany-title">
+      <div class="catalog-heading"><div><div class="eyebrow">БОТАНИКА / ПО ФАЙЛАМ СБОРКИ</div><h2 id="botany-title">Вырастить что-нибудь необычное</h2></div><label class="search"><span>⌕</span><input id="botany-search" type="search" placeholder="Мясная пшеница, криоксадон…" aria-label="Поиск по ботанике"></label></div>
+      <div class="botany-tabs" role="group" aria-label="Разделы ботаники"><button data-botany-section="plants" aria-pressed="true">Растения и цепочки</button><button data-botany-section="mutagen" aria-pressed="false">Мутаген: как применять</button><button data-botany-section="reagents" aria-pressed="false">Реагенты для растений</button><button data-botany-section="mutations" aria-pressed="false">Случайные мутации</button></div>
+      <p id="botany-summary" class="botany-intro"></p>
+      <div id="botany-content"></div>
+    </section>
+    <section id="players" hidden aria-labelledby="players-title">
+      <div class="catalog-heading"><div><div class="eyebrow">ОПЫТ СООБЩЕСТВА</div><h2 id="players-title">От Игроков</h2></div><label class="search"><span>⌕</span><input id="player-search" type="search" placeholder="Этап, лекарство или реагент…" aria-label="Поиск в методичке"></label></div>
+      <div id="player-guide"></div>
+    </section>
+    <section id="security" hidden aria-labelledby="security-title"></section>
+    <section id="scientist" hidden aria-labelledby="scientist-title"></section>
+    <section id="engineering" hidden aria-labelledby="engineering-title"></section>
+  </main>
+  <footer><span>✳ Станция рецептов <b>SS14</b></span><span id="data-info"></span><a href="README.md">О данных и обновлении ↗</a></footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <dialog id="variants"><div class="dialog-heading"><h2>Способ приготовления</h2><button id="close-variants" class="icon-button" aria-label="Закрыть">×</button></div><p id="variant-description"></p><div id="variant-list"></div></dialog>
+  <dialog id="recipe-preview" aria-labelledby="preview-title"><div class="dialog-heading"><button id="preview-back" class="secondary" hidden>← Назад</button><h2 id="preview-title">Рецепт</h2><button id="close-preview" class="icon-button" aria-label="Закрыть просмотр">×</button></div><div id="preview-content"></div></dialog>
+  <dialog id="clear-dialog"><h2>Очистить рабочее поле?</h2><p>Все карточки и отметки будут удалены. Каталог останется доступен.</p><div class="dialog-actions"><button id="cancel-clear" class="secondary">Отмена</button><button id="confirm-clear" class="primary">Очистить поле</button></div></dialog>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "ss14-recipe-workbench",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Локальный каталог рецептов SS14 с рабочим полем",
+  "scripts": {
+    "build": "node build-data.cjs && node build-scientist.cjs && node build-anomalies.cjs && node build-engineering.cjs",
+    "build:engineering": "node build-engineering.cjs",
+    "build:scientist": "node build-scientist.cjs",
+    "build:anomalies": "node build-anomalies.cjs",
+    "start": "node server.cjs",
+    "test": "node --test test.cjs security-test.cjs"
+  },
+  "dependencies": {
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "jsdom": "30.0.1"
+  }
+}

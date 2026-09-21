@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-09-12T10:53:19.830Z",
+  "revision": "e92defd299",
+  "fileCount": 3219,
+  "total": 946,
+  "categories": {
+    "chem": 162,
+    "food": 512,
+    "bar": 272
+  },
+  "linkedIngredients": 1213
+}

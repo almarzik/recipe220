@@ -1,0 +1,32 @@
+#botany{margin-top:35px;scroll-margin-top:70px}
+.botany-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 15px}
+.botany-tabs button{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:10px 15px;border-radius:7px;font-size:13px}
+.botany-tabs button[aria-pressed=true]{color:var(--accent);border-color:#637c4c;background:#273526}
+.botany-intro{color:var(--muted);line-height:1.7;font-size:13px}
+.botany-layout{display:grid;grid-template-columns:minmax(230px,300px) minmax(0,1fr);gap:24px;margin-top:24px;align-items:start}
+.plant-list{display:grid;gap:8px;max-height:850px;overflow:auto;padding-right:6px;scrollbar-color:#526d56 var(--bg)}
+.plant-option{display:flex;gap:10px;align-items:center;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:12px}
+.plant-option[aria-pressed=true]{border-color:var(--accent);background:#283a2b}
+.plant-option b{font-size:13px;font-weight:600}.plant-option small{display:block;color:var(--muted);font-size:10px;margin-top:7px;line-height:1.5}
+.plant-symbol{display:flex;align-items:center;justify-content:center;flex:0 0 44px;width:44px;height:44px;font-size:30px;background:#263629;color:var(--accent);border-radius:9px}
+.plant-detail{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:25px;min-width:0}
+.plant-detail-title{display:flex;align-items:center;gap:16px}.plant-detail-title h3{font-size:25px;margin:0}.plant-detail-title .eyebrow{margin-bottom:6px}
+.plant-chain{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:22px 0;color:var(--accent)}
+.plant-chain button{background:#273b2c;color:#d6ebc5;border:1px solid #4c6546;border-radius:6px;padding:7px 10px;font-size:12px}
+.plant-steps{padding-left:23px;line-height:1.7;font-size:13px;color:#b9c9c2}
+.plant-steps>li{padding:0 0 14px 12px;border-left:2px solid #51634b;margin-top:18px}.plant-steps li::marker{color:var(--accent);font-weight:600}
+.plant-steps h4{font-size:16px;margin:0;color:var(--text)}.plant-steps p{margin:9px 0}
+.plant-harvest{padding:16px;background:#12201c;border:1px solid #34493b;border-radius:9px;margin-top:18px}.plant-harvest h4{margin:0;font-size:16px}.plant-harvest p{font-size:13px}.plant-harvest ul{margin:0;padding:0;list-style:none}.plant-harvest li{display:flex;justify-content:space-between;font-size:12px;line-height:1.8;color:#bfd2bb}
+.botany-section-title{font-size:18px;margin:28px 0 10px}
+.botany-reagent{border:1px solid var(--line);border-radius:9px;background:#182623;padding:19px;margin-top:14px;min-width:0}
+.botany-card-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.botany-card-heading h3{font-size:17px;margin:0}.botany-role{font-size:10px;color:var(--accent);background:#2a3b27;padding:5px 8px;border-radius:5px}
+.botany-reagent ul{padding-left:20px;font-size:12px;color:#adbfba;line-height:1.8}.botany-reagent li small{display:block;color:#d4bd8c}
+.botany-mix{border-top:1px solid var(--line);padding-top:12px;font-size:12px;color:#c5d8c1}.botany-mix p{line-height:1.7}.botany-mix small{display:block;font-size:11px;color:var(--muted);line-height:1.6}
+.botany-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.botany-reagent-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px}
+.botany-route-label{display:flex;flex-direction:column;gap:8px;color:var(--muted);font-size:12px;margin-top:20px}.botany-route-label select{max-width:100%;width:100%}
+.botany-explainer{border:1px solid #3e5842;background:#1c2c23;border-radius:10px;padding:20px;margin:20px 0;color:#c3d4c7;font-size:13px;line-height:1.8}.botany-explainer h3{margin:0 0 9px;color:var(--text);font-size:18px}.botany-explainer li{margin:7px 0}
+.mutation-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:13px}.mutation-tile{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:18px;font-size:12px;line-height:1.7}.mutation-tile h3{font-size:15px;margin:0}.mutation-chance{font-size:16px;color:var(--accent)}
+.random-chemicals{display:flex;flex-wrap:wrap;gap:7px}.random-chemicals small{color:var(--muted);font-size:10px;margin-left:5px}
+.botany-empty{padding:30px;border:1px dashed var(--line);border-radius:10px;color:var(--muted);line-height:1.8}
+.workspace{scroll-margin-top:58px}
+@media(max-width:800px){.botany-layout{grid-template-columns:1fr}.plant-list{max-height:240px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}.plant-detail{padding:17px}.plant-detail-title h3{font-size:21px}.botany-reagent-grid{grid-template-columns:1fr}.page-tab{font-size:12px;padding:9px 10px}#workspace-jump{font-size:10px;padding:9px}}
