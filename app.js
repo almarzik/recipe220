@@ -328,7 +328,7 @@
   if(!$('workspace-height').value)$('workspace-height').value=475;
   new ResizeObserver(()=>{rememberWorkspaceHeight();requestAnimationFrame(layout);}).observe($('viewport'));
   window.addEventListener('resize',rememberWorkspaceHeight);
-  $('total').textContent=data.recipes.length+' рецептов';$('data-info').textContent=`Снимок ${new Date(data.generatedAt).toLocaleDateString('ru-RU')} · сборка ${data.revision}`;
+  $('total').textContent=data.recipes.length+' рецептов';
   renderCategories();renderGroups();renderCatalog();renderBoard();
   try{setWorkspaceCollapsed(localStorage.getItem('ss14-workspace-collapsed')==='true');}catch{}
 })();

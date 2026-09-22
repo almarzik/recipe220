@@ -85,25 +85,10 @@
       else{r.kind='conflict';r.label='Укажите директиву ЦК';r.minutes=null;r.errors.push('Введите полученное предписание ЦК, чтобы его можно было включить в решение.');}
     }
     if(r.kind==='empty'&&mods.medical)action('medical','Оказать медицинскую помощь','Срок не выбран. Медицинская помощь не создаёт нового наказания.');
+    if(laws.length===1&&laws[0].severity===1&&r.kind==='timed'){r.label+=' / Пред';r.notes.push('Пред — можно ограничиться предупреждением за малозначительную статью.');}
     return r;
   }
-  function documentText(laws,fields){
-    if((!laws.length&&!fields.sentence)||(!fields.sentence&&conflicts(laws).length))throw Error('Проверьте выбранные статьи.');
-    const minor=laws.every(l=>l.severity===1)&&!fields.review&&(!fields.sentence||fields.sentence.kind==='warning');
-    return [minor?'ПРОЕКТ ОФИЦИАЛЬНОГО ПРЕДУПРЕЖДЕНИЯ':'ПРОЕКТ РАПОРТА О НАРУШЕНИИ КОСМИЧЕСКОГО ЗАКОНА',
-      `Станция / смена: ${fields.station||'не указана'}`,`Сотрудник: ${fields.person}`,`Должность: ${fields.role||'не указана'}`,`Составил: ${fields.officer}`,`Место / время: ${fields.location||'не указаны'}`,'',
-      'Обстоятельства:',fields.facts,'','Основания:',...laws.map(l=>`${l.code} — ${l.name}. По КЗ: ${l.penalty}.`),'',
-      `Доказательства / свидетели: ${fields.evidence||'не описаны'}`,
-      `Объяснение сотрудника: ${fields.explanation||'не записано'}`,
-      `Отмеченные обстоятельства: ${fields.notes?.length?fields.notes.join('; '):'не отмечены'}`,'',
-      ...(fields.sentence?['Расчёт наказания: '+fields.sentence.label,...fields.sentence.steps,...fields.sentence.errors.map(e=>'Требует проверки: '+e),...fields.sentence.notes,'']:[]),
-      fields.review?'До проверки самообороны или крайней необходимости решение о наказании не предлагается.':minor?'Предлагаемое решение: объявить официальное предупреждение по указанным статьям. Разъяснить нарушение и потребовать его прекращения.':'Передать материалы уполномоченному сотруднику для решения о наказании. Этот рапорт не заменяет приговор.',
-      laws.length>1?'Совокупность и итоговое наказание подлежат отдельной проверке по КЗ.':'',
-      fields.review?'Требуют оценки: самооборона или крайняя необходимость; при подтверждении оснований обвинения снимаются.':'',
-      '','Решение утвердил: ____________________','Подпись / печать: ____________________','Ознакомление сотрудника: ____________________'
-    ].filter(line=>line!==undefined).join('\n');
-  }
-  scope.SecurityDesk={conflicts,documentText,calculate};
+  scope.SecurityDesk={conflicts,calculate};
   if(!scope.document||!scope.SECURITY_DATA)return;
   const d=scope.SECURITY_DATA,$=id=>document.getElementById(id),esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const selected=new Set(),byCode=new Map(d.laws.map(l=>[l.code,l])),choices={};
@@ -113,17 +98,10 @@
     <div class="security-controls"><input id="law-search" type="search" placeholder="Код, название, пример…" aria-label="Поиск по Космическому закону"><select id="law-severity" aria-label="Тяжесть статьи"><option value="">Все категории</option>${categories.slice(1).map((c,i)=>`<option value="${i+1}">${i+1}XX · ${c}</option>`).join('')}</select><span id="law-count" role="status"></span></div>
     <div class="law-table-wrap"><table class="law-table"><caption><span>Справочник статей</span><small>По коду и тяжести нарушения</small></caption><thead><tr><th scope="col" class="law-axis">Код</th>${categories.slice(1).map((c,i)=>`<th scope="col" data-severity="${i+1}"><span class="law-level">${i+1}XX</span><span class="law-category">${c}</span><small>${['до 5 мин / предупреждение','10 мин','15 или 20 мин','30 мин','решение уполномоченных лиц'][i]}</small></th>`).join('')}</tr></thead><tbody id="law-table-body"></tbody></table></div>
     <p id="law-empty" hidden>Ничего не найдено. Измените запрос или категорию.</p>
-    <form id="security-form" class="security-form"><h3>Материалы дела → проект документа</h3><p>Выберите подходящие статьи в таблице, заполните обстоятельства и получите текст для копирования. Для 1XX получится предупреждение (выговор), для более тяжких статей — рапорт.</p>
-    <div class="security-quick"><button type="button" data-quick="100">Повредил имущество</button><button type="button" data-quick="102">Нанёс побои</button><button type="button" data-quick="108">Проник без доступа</button><button type="button" data-quick="200">Создал угрозу по небрежности</button><button type="button" data-quick="207">Мелкая кража</button></div>
-    <p class="security-source">Быстрые кнопки открывают статью для проверки: одного описания ситуации недостаточно для обвинения.</p><div id="security-selected" class="security-selected"></div><p id="security-conflicts" class="security-alert" role="status"></p>
-    <div class="security-fields"><label>Сотрудник *<input name="person" required maxlength="100"></label><label>Должность<input name="role" maxlength="100"></label><label>Составил *<input name="officer" required maxlength="100"></label><label>Станция / смена<input name="station" maxlength="100"></label><label class="wide">Место и время<input name="location" maxlength="160"></label><label class="wide">Что произошло *<textarea name="facts" required maxlength="4000" placeholder="Опишите действия, последствия и последовательность событий."></textarea></label><label>Доказательства / свидетели<textarea name="evidence" maxlength="2000"></textarea></label><label>Объяснение сотрудника<textarea name="explanation" maxlength="2000"></textarea></label></div>
-    <fieldset class="security-checks"><legend>Обстоятельства для рассмотрения</legend><label><input name="surrender" type="checkbox">Добровольно явился в бриг и признался</label><label><input name="restitution" type="checkbox">Вернул имущество / устранил причинённый ущерб</label><label><input name="defense" type="checkbox">Заявлена самооборона или крайняя необходимость</label><label><input name="compatibility" type="checkbox">Для нескольких статей проверены совместимость, эпизоды и отсутствие двойного обвинения за один предмет</label></fieldset>
-    <p class="security-source">Отметки включаются в документ для оценки. Сроки и коэффициенты автоматически не назначаются. При совокупности действует ограничение КЗ; исключения проверяются по оригиналу.</p>
-    <div class="security-actions"><button type="submit" class="primary">Составить документ</button><button type="button" id="security-reset" class="quiet">Очистить дело</button></div><p id="security-status" role="status"></p>
-    <label id="security-result-label" for="security-output">Проект документа — можно отредактировать перед копированием</label><textarea id="security-output" placeholder="Здесь появится текст предупреждения или рапорта."></textarea><div class="security-actions security-output-actions"><button type="button" id="security-copy" disabled>Копировать текст</button></div></form>
+    <div id="security-selected" class="security-selected"></div><p id="security-conflicts" class="security-alert" role="status"></p>
     <p class="security-source">${esc(d.attribution)} <a href="${d.source}?oldid=${d.revision}" target="_blank" rel="noopener">Источник и авторы SS220 WIKI</a> · <a href="${d.license}" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>. Материалы КЗ и их адаптация распространяются по этой лицензии. Это внутриигровой справочник; правила сервера имеют приоритет.</p>`;
   $('security-title').textContent='Калькулятор наказания · SS220';
-  document.querySelector('.security-intro p').textContent='Выберите статьи, уточните сроки и обстоятельства. Итог пересчитывается сразу. Наведение покажет пример, название откроет полный текст.';
+  document.querySelector('.security-intro p').textContent='Выберите статьи, уточните сроки и обстоятельства. Итог пересчитывается сразу. Нажмите на карточку, чтобы добавить статью в дело. При наведении показывается пример, «Пояснение» открывает полный текст.';
   const layout=document.createElement('div');layout.className='security-layout';
   layout.innerHTML='<section class="security-catalog" aria-label="Статьи Космического закона"></section><aside class="security-calculator" aria-label="Расчёт наказания"><div class="sentence-head"><h3>Итог по делу</h3><button type="button" id="sentence-clear">Очистить</button></div><div id="sentence-result" aria-live="polite"></div><div class="sentence-actions"><button type="button" id="sentence-copy" disabled>Копировать расчёт</button><button type="button" id="sentence-layout" aria-pressed="false">Панель снизу</button></div><p id="sentence-status" role="status"></p><h3>Выбранные статьи</h3><div id="sentence-charges"></div><div id="sentence-modifiers"><h3>Обстоятельства дела</h3><label class="sentence-check"><input id="sentence-cooperation" type="checkbox">Сотрудничество со следствием <b>−50%</b></label><small>Предоставленная информация должна быть подлинной.</small><label class="sentence-check"><input id="sentence-refusal" type="checkbox">Отказ от процедур в бриге <b>+50%</b></label><label id="sentence-order-label" hidden>Порядок повышающих модификаторов<select id="sentence-order"><option value="repeat-first">Сначала рецидив, затем +50%</option><option value="refusal-first">Сначала +50%, затем рецидив</option></select></label><label id="sentence-damage-label" class="sentence-check" hidden><input id="sentence-damage" type="checkbox">Ущерб по 100 нанесён после вторжения по 208</label></div><details class="sentence-help"><summary>Как считается срок</summary><p>1XX: предупреждение или до 5 минут. 2XX: 10. 3XX: выбор 15 или 20. 4XX: 30. Для 5XX конечного срока нет.</p><p>Сумма ограничивается 1,5 срока самой тяжёлой статьи. Затем идут повышения, после них — снижения. Явка и сотрудничество вместе дают × 0,25.</p><p>Повторный приговор за ту же статью: второй +10, третий +20, четвёртый +30 минут; пятый — пермабриг. Несколько действий в одном эпизоде не считаются рецидивом.</p><p>60 минут и более — пермабриг; свыше 90 минут допускается казнь. Это не дополнительные минуты в обычной камере.</p><p>Сверяйте совместимость статей: один предмет нельзя учитывать дважды. Для пособничества без обвинений у основного нарушителя КЗ отдельно предусматривает 5 минут.</p><p>Директива ЦК, УДО, враги корпорации и побег требуют отдельного решения по КЗ. Медпомощь не останавливает таймер; при угрозе заключённого перемещают или освобождают.</p></details></aside>';
   const catalog=layout.querySelector('.security-catalog'),aside=layout.querySelector('aside');
@@ -133,8 +111,6 @@
   catalog.append(document.querySelector('.security-controls'),document.querySelector('.law-table-wrap'),$('law-empty'));
   $('sentence-charges').append($('security-selected'),$('security-conflicts'));
   const enabled=new Set();
-  $('security-form').elements.surrender.parentElement.remove();
-  $('security-form').elements.defense.parentElement.remove();
   const damageLabel=$('sentence-damage-label');
   $('sentence-charges').append(damageLabel);
   const modifierDefinitions=[
@@ -165,10 +141,6 @@
   }
   $('sentence-modifiers').addEventListener('click',e=>{const b=e.target.closest('[data-modifier]');if(!b)return;const key=b.dataset.modifier;if(enabled.has(key))enabled.delete(key);else enabled.add(key);invalidate();$('sentence-status').textContent='';renderSentence();});
 
-  const report=document.createElement('details');report.className='security-report';report.innerHTML='<summary>Оформить рапорт или предупреждение</summary>';
-  $('security-form').before(report);report.append($('security-form'));
-  document.querySelector('#security-form h3+p').textContent='Расчёт уже готов выше. Заполните сведения, чтобы включить его в рапорт. Поля не нужны для самого калькулятора.';
-  for(const p of document.querySelectorAll('#security-form .security-source'))if(p.textContent.includes('коэффициенты автоматически'))p.textContent='Возмещение ущерба включается в рапорт без автоматической скидки: КЗ не задаёт для него коэффициент.';
   const dialog=document.createElement('dialog');dialog.id='law-dialog';dialog.setAttribute('aria-labelledby','law-dialog-title');dialog.innerHTML='<div class="dialog-heading"><h2 id="law-dialog-title"></h2><button id="law-close" class="icon-button" aria-label="Закрыть статью">×</button></div><div id="law-dialog-content"></div><div class="dialog-actions"><button id="law-select" class="primary">Добавить в дело</button></div>';document.body.append(dialog);
   const tooltip=document.createElement('div');tooltip.id='law-tooltip';tooltip.className='law-tooltip';tooltip.role='tooltip';tooltip.hidden=true;document.body.append(tooltip);
   let currentLaw=null;
@@ -202,41 +174,25 @@
     $('law-count').textContent=`Статей: ${matches.length} / ${d.laws.length}`;$('law-empty').hidden=matches.length>0;
     $('law-table-body').innerHTML=Array.from({length:10},(_,suffix)=>{
       const row=matches.filter(l=>Number(l.code.slice(1))===suffix);if(!row.length)return '';
-      return `<tr><th scope="row" class="law-axis"><span>${String(suffix).padStart(2,'0')}</span></th>${[1,2,3,4,5].map(level=>{const l=row.find(l=>l.severity===level);return l?`<td data-severity="${level}"><div class="law-cell"><label class="law-pick"><input type="checkbox" data-charge="${l.code}" aria-label="Выбрать статью ${l.code}" ${selected.has(l.code)?'checked':''}><span>${selected.has(l.code)?'В деле':'В дело'}</span></label><button type="button" class="law-name" data-law="${l.code}" aria-describedby="law-tooltip"><strong>${l.code}</strong><span class="law-label">${esc(l.name)}</span><span class="law-open" aria-hidden="true">Пояснение ↗</span></button></div></td>`:'<td class="law-empty"><span aria-label="Нет статьи">·</span></td>';}).join('')}</tr>`;
+      return `<tr><th scope="row" class="law-axis"><span>${String(suffix).padStart(2,'0')}</span></th>${[1,2,3,4,5].map(level=>{const l=row.find(l=>l.severity===level);return l?`<td data-severity="${level}"><div class="law-cell" data-example="${l.code}"><button type="button" class="law-name law-add" data-charge="${l.code}" aria-pressed="${selected.has(l.code)}" aria-describedby="law-tooltip"><strong>${l.code}</strong><span class="law-label">${esc(l.name)}</span><span class="law-selection">${selected.has(l.code)?'✓ В деле':'+ В дело'}</span></button><button type="button" class="law-explain" data-law="${l.code}">Пояснение</button></div></td>`:'<td class="law-empty"><span aria-label="Нет статьи">·</span></td>';}).join('')}</tr>`;
     }).join('');
     $('security-selected').innerHTML=selectedLaws().map(choiceMarkup).join('')||'<span class="sentence-empty">Дело пока пустое.</span>';
     renderModifierFields();
     renderSentence();
   }
-  function invalidate(){if($('security-output').value){$('security-output').value='';$('security-status').textContent='Данные изменены. Составьте документ заново.';}$('security-copy').disabled=true;}
-  function setCharge(code,on){if(on)selected.add(code);else{selected.delete(code);delete choices[code];}invalidate();$('sentence-status').textContent='';render();}
+  function invalidate(){ $('sentence-status').textContent=''; const fallback=$('sentence-copy-text');if(fallback)fallback.remove(); }
+  function setCharge(code,on){tooltip.hidden=true;if(on)selected.add(code);else{selected.delete(code);delete choices[code];}invalidate();$('sentence-status').textContent='';render();}
   function openLaw(code){currentLaw=byCode.get(code);if(!currentLaw)return;tooltip.hidden=true;$('law-dialog-title').textContent=`${code} — ${currentLaw.name}`;$('law-dialog-content').innerHTML=`<p><b>${esc(currentLaw.penalty)}</b></p><p class="law-example"><b>Учебный пример:</b> ${esc(currentLaw.example)}</p><h3>Пояснение из КЗ</h3>${currentLaw.paragraphs.map(p=>`<p>${esc(p)}</p>`).join('')}<a target="_blank" rel="noopener" href="${d.source}#${encodeURIComponent(currentLaw.anchor)}">Статья на вики ↗</a>`;$('law-select').textContent=selected.has(code)?'Убрать из дела':'Добавить в дело';dialog.showModal();}
   $('law-close').addEventListener('click',()=>dialog.close());
   $('law-select').addEventListener('click',()=>{setCharge(currentLaw.code,!selected.has(currentLaw.code));dialog.close();});
-  $('security').addEventListener('click',e=>{const law=e.target.closest('[data-law],[data-quick]');if(law)openLaw(law.dataset.law||law.dataset.quick);const remove=e.target.closest('[data-remove-charge]');if(remove)setCharge(remove.dataset.removeCharge,false);});
-  $('law-table-body').addEventListener('change',e=>{if(e.target.dataset.charge)setCharge(e.target.dataset.charge,e.target.checked);});
+  $('security').addEventListener('click',e=>{const law=e.target.closest('[data-law]');if(law){openLaw(law.dataset.law);return;}const charge=e.target.closest('[data-charge]');if(charge){setCharge(charge.dataset.charge,!selected.has(charge.dataset.charge));return;}const remove=e.target.closest('[data-remove-charge]');if(remove)setCharge(remove.dataset.removeCharge,false);});
   for(const id of ['law-search','law-severity'])$(id).addEventListener('input',render);
-  function showTip(e){const b=e.target.closest('[data-law]');if(!b)return;tooltip.textContent='Учебный пример: '+byCode.get(b.dataset.law).example;tooltip.hidden=false;const r=b.getBoundingClientRect();tooltip.style.left=Math.max(10,Math.min(r.left,window.innerWidth-tooltip.offsetWidth-10))+'px';tooltip.style.top=Math.max(10,Math.min(r.bottom+8,window.innerHeight-tooltip.offsetHeight-10))+'px';}
+  function showTip(e){const b=e.target.closest('[data-example]');if(!b)return;tooltip.textContent='Учебный пример: '+byCode.get(b.dataset.example).example;tooltip.hidden=false;const r=b.getBoundingClientRect();tooltip.style.left=Math.max(10,Math.min(r.left,window.innerWidth-tooltip.offsetWidth-10))+'px';tooltip.style.top=Math.max(10,Math.min(r.bottom+8,window.innerHeight-tooltip.offsetHeight-10))+'px';}
   $('law-table-body').addEventListener('pointerover',showTip);$('law-table-body').addEventListener('focusin',showTip);
   $('law-table-body').addEventListener('pointerout',()=>tooltip.hidden=true);$('law-table-body').addEventListener('focusout',()=>tooltip.hidden=true);
   window.addEventListener('scroll',()=>tooltip.hidden=true,true);window.addEventListener('keydown',e=>{if(e.key==='Escape')tooltip.hidden=true;});
   document.addEventListener('click',e=>{if(e.target.closest('.page-tab'))tooltip.hidden=true;});
-  $('security-form').addEventListener('input',e=>{if(e.target.id==='security-output'){$('security-copy').disabled=!e.target.value.trim();return;}invalidate();});
-  $('security-form').addEventListener('submit',e=>{
-    e.preventDefault();const laws=selectedLaws(),form=$('security-form'),fields=Object.fromEntries(new FormData(form));
-    const result=sentence();
-    if(result.kind==='empty'){$('security-status').textContent='Выберите хотя бы одну статью или особое обстоятельство.';return;}
-    if(result.kind==='conflict'&&conflicts(laws.filter(l=>!effectiveChoices()[l.code]?.exemption)).length){$('security-status').textContent='Уберите несовместимые статьи перед составлением документа.';return;}
-    if(result.kind==='conflict'){$('security-status').textContent=result.errors.join(' ');return;}
-    if(laws.length>1&&!form.elements.compatibility.checked){$('security-status').textContent='Проверьте совместимость статей и отметьте это в форме. Для 100 + 208 проверьте, не относится ли ущерб к самому проникновению.';return;}
-    fields.notes=modifierDefinitions.filter(([key])=>enabled.has(key)).map(([,label])=>label);if(form.elements.restitution.checked)fields.notes.push('ущерб возмещён / имущество возвращено');fields.review=false;
-    if(result.kind!=='conflict')fields.sentence=result;
-    if(['directive','released'].includes(result.kind))fields.review=false;
-    $('security-output').value=documentText(laws,fields);$('security-copy').disabled=false;$('security-status').textContent='Проект готов. Проверьте формулировки и решение перед использованием.';
-  });
-  $('security-copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('security-output').value);$('security-status').textContent='Текст скопирован.';}catch{$('security-output').focus();$('security-output').select();$('security-status').textContent='Текст выделен. Нажмите Ctrl+C для копирования.';}});
-  $('security-reset').addEventListener('click',()=>{selected.clear();enabled.clear();for(const code of Object.keys(choices))delete choices[code];$('security-form').reset();$('sentence-damage').checked=false;$('sentence-order').value='repeat-first';$('sentence-accessory-mode').value='charged';$('sentence-conversion-stage').value='controlled';$('sentence-threat-action').value='move';$('sentence-directive-text').value='';$('sentence-status').textContent='';$('security-output').value='';$('security-status').textContent='Дело очищено.';$('security-copy').disabled=true;render();});
-  $('sentence-clear').addEventListener('click',()=>$('security-reset').click());
+  $('sentence-clear').addEventListener('click',()=>{selected.clear();enabled.clear();for(const code of Object.keys(choices))delete choices[code];$('sentence-damage').checked=false;$('sentence-order').value='repeat-first';$('sentence-accessory-mode').value='charged';$('sentence-conversion-stage').value='controlled';$('sentence-threat-action').value='move';$('sentence-directive-text').value='';invalidate();render();});
   $('sentence-directive-text').addEventListener('input',()=>{invalidate();$('sentence-status').textContent='';renderSentence();});
   $('security').addEventListener('change',e=>{
     const key=e.target.dataset.sentenceField;
@@ -248,7 +204,7 @@
     const r=sentence();if(['empty','conflict'].includes(r.kind))return;
     const value=sentenceText(r);
     try{await navigator.clipboard.writeText(value);$('sentence-status').textContent='Расчёт скопирован.';}
-    catch{report.open=true;$('security-output').value=value;$('security-output').focus();$('security-output').select();$('security-copy').disabled=false;$('sentence-status').textContent='Расчёт выделен в поле документа. Нажмите Ctrl+C.';}
+    catch{let field=$('sentence-copy-text');if(!field){field=document.createElement('textarea');field.id='sentence-copy-text';field.readOnly=true;field.setAttribute('aria-label','Расчёт для копирования');$('sentence-status').after(field);}field.value=value;field.focus();field.select();$('sentence-status').textContent='Расчёт выделен. Нажмите Ctrl+C.';}
   });
   render();
 })(typeof module==='object'&&module.exports?module.exports:window);

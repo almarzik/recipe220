@@ -223,6 +223,18 @@ test('scientist hides workspace, preserves collapse state and saves research not
   const b=scientistApp({'ss14-scientist-notes':notes});try{assert.equal(b.doc.querySelector('#science-notes').value,notes);assert.equal(b.doc.querySelector('#scientist img'),null);}finally{b.close();}
 });
 function securityApp(){const a=app();a.w.eval(text('security-data.js'));a.w.eval(text('security.js'));a.click('#tab-security');return a;}
+test('security cards select on click, explanations only respond to their own target, and report is removed',()=>{
+  const a=securityApp();try{
+    assert.equal(a.doc.querySelector('#security-form,.security-report,#security-output'),null);assert.equal(a.w.SecurityDesk.documentText,undefined);
+    assert.deepEqual([...a.doc.querySelector('footer').children].map(el=>el.textContent),['Станция рецептов','ss220','От игрока - игрокам!']);
+    const card=a.doc.querySelector('[data-charge="103"]');card.dispatchEvent(new a.w.Event('pointerover',{bubbles:true}));assert.equal(a.doc.querySelector('#law-tooltip').hidden,false);
+    a.click('[data-charge="103"] .law-label');assert.equal(a.doc.querySelector('[data-charge="103"]').getAttribute('aria-pressed'),'true');assert.equal(a.doc.querySelector('#law-dialog').open,false);assert.match(a.doc.querySelector('.sentence-value').textContent,/5 мин \/ Пред/);
+    const hint=a.doc.querySelector('[data-law="103"]');hint.dispatchEvent(new a.w.Event('pointerover',{bubbles:true}));assert.equal(a.doc.querySelector('#law-tooltip').hidden,false);assert.equal(a.doc.querySelector('#law-tooltip').textContent,'Учебный пример: '+a.w.SECURITY_DATA.laws.find(l=>l.code==='103').example);
+    a.click('[data-law="103"]');assert.equal(a.doc.querySelector('#law-dialog').open,true);assert.equal(a.doc.querySelector('[data-charge="103"]').getAttribute('aria-pressed'),'true');a.click('#law-close');
+    a.click('[data-charge="108"]');assert.doesNotMatch(a.doc.querySelector('.sentence-value').textContent,/Пред/);a.click('[data-charge="108"]');assert.match(a.doc.querySelector('.sentence-value').textContent,/Пред/);
+    a.click('[data-charge="103"]');assert.equal(a.doc.querySelector('#sentence-result').dataset.kind,'empty');
+  }finally{a.close();}
+});
 test('security modifier buttons share one group and disable effects without losing dropdown settings',()=>{
   const a=securityApp();try{
     const result=()=>a.doc.querySelector('#sentence-result');
@@ -237,7 +249,7 @@ test('security modifier buttons share one group and disable effects without losi
     a.click('[data-remove-charge="200"]');assert.equal(a.doc.querySelector('#sentence-necessity').getAttribute('aria-pressed'),'false');assert.match(result().textContent,/10:00/);
   }finally{a.close();}
 });
-test('security special modifiers update immediately, copy into reports and reset completely',()=>{
+test('security special modifiers update immediately, copy safely and reset completely',()=>{
   const a=securityApp();try{
     const r=()=>a.doc.querySelector('#sentence-result');
     a.click('#sentence-accessory');const mode=a.doc.querySelector('#sentence-accessory-mode');mode.value='unaccused';mode.dispatchEvent(new a.w.Event('change',{bubbles:true}));assert.match(r().textContent,/Таймер камеры: 5:00/);
@@ -245,19 +257,19 @@ test('security special modifiers update immediately, copy into reports and reset
     assert.equal(a.doc.querySelector('#sentence-modifiers input[type="checkbox"]'),null);assert.equal(a.doc.querySelector('#sentence-medical'),null);
     a.click('#sentence-directive');assert.equal(r().dataset.kind,'conflict');assert.equal(a.doc.querySelector('#modifier-panel-directive').hidden,false);
     const directive=a.doc.querySelector('#sentence-directive-text');directive.value='<b>Освободить</b>';directive.dispatchEvent(new a.w.Event('input',{bubbles:true}));assert.equal(r().dataset.kind,'directive');assert.equal(r().querySelector('b'),null);
-    const form=a.doc.querySelector('#security-form');form.elements.person.value='Тест';form.elements.officer.value='Тест';form.elements.facts.value='Тест';form.requestSubmit();assert.match(a.doc.querySelector('#security-output').value,/<b>Освободить<\/b>/);
+    a.click('#sentence-copy');assert.match(a.doc.querySelector('#sentence-copy-text').value,/<b>Освободить<\/b>/);
     a.click('#sentence-clear');assert.equal(r().dataset.kind,'empty');assert.equal(directive.value,'');assert.equal(a.doc.querySelector('#modifier-panel-directive').hidden,true);assert.equal(a.doc.querySelectorAll('[data-modifier][aria-pressed="true"]').length,0);
   }finally{a.close();}
 });
-test('security live sentence calculator updates fractions, report, exemptions, layout and reset',()=>{
+test('security live sentence calculator updates fractions, copied text, exemptions, layout and reset',()=>{
   const a=securityApp();try{
     const result=()=>a.doc.querySelector('#sentence-result');
     const change=(selector,value)=>{const el=a.doc.querySelector(selector);el.value=value;el.dispatchEvent(new a.w.Event('change',{bubbles:true}));};
     a.click('[data-charge="200"]');assert.match(result().textContent,/Таймер камеры: 10:00/);
     a.click('#sentence-refusal');a.click('#sentence-surrender');assert.match(result().textContent,/Таймер камеры: 7:30/);
     a.click('#sentence-cooperation');assert.match(result().textContent,/Таймер камеры: 3:45/);
-    const form=a.doc.querySelector('#security-form');form.elements.person.value='Тест';form.elements.officer.value='Офицер';form.elements.facts.value='Проверка';form.requestSubmit();assert.match(a.doc.querySelector('#security-output').value,/Расчёт наказания: 3,75 мин/);
-    a.click('#sentence-repeat');change('[data-code="200"][data-sentence-field="repeat"]','2');assert.equal(a.doc.querySelector('#security-output').value,'');assert.equal(a.doc.querySelector('#sentence-order-label').hidden,false);
+    a.click('#sentence-copy');assert.match(a.doc.querySelector('#sentence-copy-text').value,/Итог: 3,75 мин/);
+    a.click('#sentence-repeat');change('[data-code="200"][data-sentence-field="repeat"]','2');assert.equal(a.doc.querySelector('#sentence-copy-text'),null);assert.equal(a.doc.querySelector('#sentence-order-label').hidden,false);
     change('[data-code="200"][data-sentence-field="repeat"]','5');assert.equal(result().dataset.kind,'permanent');assert.equal(result().querySelector('.sentence-clock'),null);
     a.click('#sentence-defense');assert.equal(result().dataset.kind,'released');
     a.click('#sentence-layout');assert.equal(a.doc.querySelector('.security-layout').classList.contains('security-stack'),true);
@@ -298,24 +310,9 @@ test('security matrix search, hover examples, dialog and article selection work 
     assert.equal(a.doc.querySelectorAll('[data-law]').length,32);
     const law=a.doc.querySelector('[data-law="100"]');law.dispatchEvent(new a.w.Event('pointerover',{bubbles:true}));assert.equal(a.doc.querySelector('#law-tooltip').hidden,false);assert.match(a.doc.querySelector('#law-tooltip').textContent,/лампы/);
     a.click('[data-law="100"]');assert.equal(a.doc.querySelector('#law-dialog').open,true);assert.match(a.doc.querySelector('#law-dialog-content').textContent,/Граффити/);a.click('#law-select');
-    assert.equal(a.doc.querySelector('[data-charge="100"]').checked,true);
+    assert.equal(a.doc.querySelector('[data-charge="100"]').getAttribute('aria-pressed'),'true');
     const search=a.doc.querySelector('#law-search');search.value='207';search.dispatchEvent(new a.w.Event('input'));assert.equal(a.doc.querySelectorAll('[data-law]').length,1);assert.ok(a.doc.querySelector('[data-law="207"]'));
     assert.ok(a.doc.querySelector('[data-remove-charge="100"]'));a.click('[data-remove-charge="100"]');assert.equal(a.doc.querySelectorAll('[data-remove-charge]').length,0);
-  }finally{a.close();}
-});
-test('security generates warning or report, flags conflicts, invalidates stale drafts and safely handles text',()=>{
-  const a=securityApp();try{
-    const form=a.doc.querySelector('#security-form'),out=a.doc.querySelector('#security-output');
-    form.elements.person.value='<img src=x onerror=alert(1)>';form.elements.officer.value='Офицер';form.elements.facts.value='Разбил лампы в коридоре.';
-    a.click('[data-charge="100"]');
-    const term=a.doc.querySelector('[data-code="100"][data-sentence-field="minutes"]');term.value='0';term.dispatchEvent(new a.w.Event('change',{bubbles:true}));
-    form.requestSubmit();assert.match(out.value,/ПРОЕКТ ОФИЦИАЛЬНОГО ПРЕДУПРЕЖДЕНИЯ/);assert.ok(out.value.includes('<img'));assert.equal(a.doc.querySelector('#security img'),null);
-    a.click('[data-charge="200"]');assert.equal(out.value,'');form.requestSubmit();assert.match(a.doc.querySelector('#security-status').textContent,/несовместимые/);
-    a.click('[data-remove-charge="100"]');form.requestSubmit();assert.match(out.value,/ПРОЕКТ РАПОРТА/);
-    a.click('[data-charge="207"]');form.requestSubmit();assert.equal(out.value,'');form.elements.compatibility.click();form.requestSubmit();assert.match(out.value,/207 — Мелкая кража/);
-    a.click('#sentence-defense');form.requestSubmit();assert.match(out.value,/Обвинения сняты/);
-    a.click('#security-reset');assert.equal(out.value,'');assert.equal(form.elements.person.value,'');assert.equal(a.doc.querySelectorAll('[data-remove-charge]').length,0);
-    const conflict=a.w.SecurityDesk.conflicts(['309','302'].map(code=>a.w.SECURITY_DATA.laws.find(l=>l.code===code)));assert.equal(conflict.length,1);
   }finally{a.close();}
 });
 test('kitchen stocks match Chefvend and require selected flour, milk and animal products',()=>{
@@ -763,4 +760,15 @@ test('chef menu button adds ten saved cards without opening or scrolling a colla
     assert.equal(new Set(cards.map(c=>c.x+':'+c.y)).size,20);saved=a.saved();
   }finally{a.close();}
   const b=app(saved);try{assert.equal(b.doc.querySelectorAll('.todo').length,20);}finally{b.close();}
+});
+
+test('security compact cards select directly, hover only shows an example, and explanations open separately',()=>{
+  const a=securityApp();try{
+    assert.equal(a.doc.querySelector('#security-form,.security-report'),null);assert.equal(a.w.SecurityDesk.documentText,undefined);
+    const card=a.doc.querySelector('[data-charge="100"]');card.dispatchEvent(new a.w.Event('pointerover',{bubbles:true}));
+    assert.equal(a.doc.querySelector('#law-tooltip').textContent,'Учебный пример: '+a.w.SECURITY_DATA.laws.find(l=>l.code==='100').example);
+    a.click('[data-charge="100"] .law-label');assert.equal(a.doc.querySelector('[data-charge="100"]').getAttribute('aria-pressed'),'true');assert.equal(a.doc.querySelector('#law-dialog').open,false);
+    a.click('[data-law="100"]');assert.equal(a.doc.querySelector('#law-dialog').open,true);assert.equal(a.doc.querySelectorAll('[data-remove-charge]').length,1);assert.match(a.doc.querySelector('#law-dialog-content').textContent,/Граффити/);a.click('#law-close');
+    a.click('[data-charge="100"]');assert.equal(a.doc.querySelectorAll('[data-remove-charge]').length,0);
+  }finally{a.close();}
 });
