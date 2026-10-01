@@ -10,6 +10,7 @@ for(const file of ['engineering.js','engineering-data.js','engineering.css'])fil
 for(const file of ['atmos-economy.js','supermatter.js'])files.add(file);
 files.add('assets/engineering-credits.json');
 for(const file of ['sm-observer.js','sm-observer.css'])files.add(file);
+for(const file of ['medical.js','medical-data.js','medical.css'])files.add(file);
 http.createServer((req,res)=>{
   const file = new URL(req.url,'http://localhost').pathname.slice(1) || 'index.html';
   if (!files.has(file) && !/^assets\/[a-f0-9]{20}\.png$/.test(file)) {res.writeHead(404);res.end('Not found');return;}

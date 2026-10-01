@@ -772,3 +772,13 @@ test('security compact cards select directly, hover only shows an example, and e
     a.click('[data-charge="100"]');assert.equal(a.doc.querySelectorAll('[data-remove-charge]').length,0);
   }finally{a.close();}
 });
+
+test('botany uses examination and pollen transfer instead of plant analyzers',()=>{
+  const a=app();try{
+    a.click('#tab-botany');assert.doesNotMatch(a.doc.querySelector('#botany-content').textContent,/анализатор/i);assert.match(a.doc.querySelector('#botany-content').textContent,/Здесь растёт/);
+    a.click('.botany-tabs [data-botany-section="swabs"]');assert.match(a.doc.querySelector('#swab-plan').textContent,/неизвестен/);
+    const donor=a.doc.querySelector('#swab-donor'),receiver=a.doc.querySelector('#swab-receiver');donor.value='wheat';receiver.value='meatwheat';receiver.dispatchEvent(new a.w.Event('change',{bubbles:true}));
+    const plan=a.doc.querySelector('#swab-plan').textContent;assert.match(plan,/прежнего растения Б/);assert.match(plan,/50%/);assert.match(plan,/70%/);assert.match(plan,/примерно 2 секунды/);assert.match(plan,/Палочка не превращает/);
+    for(const section of ['plants','mutagen','mutations']){a.click('.botany-tabs [data-botany-section="'+section+'"]');assert.doesNotMatch(a.doc.querySelector('#botany-content').textContent,/анализатор/i);}
+  }finally{a.close();}
+});

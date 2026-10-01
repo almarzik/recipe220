@@ -84,8 +84,10 @@
     $('security').hidden=page!=='security';
     $('scientist').hidden=page!=='scientist';
     $('engineering').hidden=page!=='engineering';
+    $('medical').hidden=page!=='medical';
+    $('tab-medical').setAttribute('aria-pressed',String(page==='medical'));
     $('tab-engineering').setAttribute('aria-pressed',String(page==='engineering'));
-    const referencePage=page==='security'||page==='scientist'||page==='engineering';
+    const referencePage=page==='medical'||page==='security'||page==='scientist'||page==='engineering';
     document.querySelector('.workspace').hidden=referencePage;
     document.querySelector('.workspace-heading').hidden=referencePage;
     $('workspace-jump').hidden=referencePage;
@@ -101,6 +103,7 @@
   $('tab-players').addEventListener('click',()=>switchPage('players'));
   $('tab-security').addEventListener('click',()=>switchPage('security'));
   $('tab-scientist').addEventListener('click',()=>switchPage('scientist'));
+  $('tab-medical').addEventListener('click',()=>switchPage('medical'));
   $('tab-engineering').addEventListener('click',()=>switchPage('engineering'));
   document.addEventListener('workbench:add-recipe',e=>{if(recipes.has(e.detail?.id))addCard(e.detail.id);});
   function renderCategories() { $('categories').innerHTML=Object.entries(categories).map(([key,c])=>`<button class="category-tab" data-category="${key}" aria-pressed="${category===key}">${c.icon} ${c.name}<span>${key==='all'?data.recipes.length:data.recipes.filter(r=>r.category===key).length}</span></button>`).join(''); }

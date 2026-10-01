@@ -32,6 +32,9 @@
   <script src="sm-observer.js" defer></script>
   <script src="anomalies-data.js" defer></script>
   <script src="anomalies.js" defer></script>
+  <link rel="stylesheet" href="medical.css">
+  <script src="medical-data.js" defer></script>
+  <script src="medical.js" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -44,7 +47,8 @@
     <button id="tab-players" class="page-tab" aria-pressed="false" aria-controls="players">От Игроков</button>
     <button id="tab-security" class="page-tab" aria-pressed="false" aria-controls="security">СБ</button>
     <button id="tab-scientist" class="page-tab" aria-pressed="false" aria-controls="scientist">Учёный</button>
-    <button id="tab-engineering" class="page-tab" aria-pressed="false" aria-controls="engineering">Инженерия</button>
+    <button id="tab-medical" class="page-tab" aria-pressed="false" aria-controls="medical">МЕД</button>
+      <button id="tab-engineering" class="page-tab" aria-pressed="false" aria-controls="engineering">Инженерия</button>
     <button id="workspace-jump" class="secondary">Рабочая область ↕</button>
   </nav>
   <main>
@@ -93,7 +97,8 @@
     <section id="security" hidden aria-labelledby="security-title"></section>
     <section id="scientist" hidden aria-labelledby="scientist-title"></section>
     <section id="engineering" hidden aria-labelledby="engineering-title"></section>
-  </main>
+    <section id="medical" hidden aria-labelledby="medical-title"></section>
+</main>
   <footer class="site-footer"><span>Станция рецептов</span><span>ss220</span><span>От игрока - игрокам!</span></footer>
   <div id="toast" role="status" aria-live="polite"></div>
   <dialog id="variants"><div class="dialog-heading"><h2>Способ приготовления</h2><button id="close-variants" class="icon-button" aria-label="Закрыть">×</button></div><p id="variant-description"></p><div id="variant-list"></div></dialog>
