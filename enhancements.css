@@ -67,3 +67,5 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .output-settings .batch-note{margin:8px 0 0}
 #preview-content .output-settings{padding:12px;background:#142122;border:1px solid var(--line);border-radius:8px;margin:15px 0}
 @media(max-width:600px){#recipe-preview{padding:18px}#preview-title{font-size:18px}.board-actions{gap:6px}.board-actions button{padding:9px 11px}}
+
+#tab-engineering{position:relative;padding-right:43px}.tab-beta{position:absolute;top:3px;right:4px;font-size:8px;line-height:1.2;font-weight:700;letter-spacing:.3px;padding:2px 3px;border-radius:3px;background:#3b3320;color:#f1d28c}#tab-engineering[aria-pressed=true] .tab-beta{background:#263724;color:#e2f7b9}
