@@ -288,6 +288,182 @@ window.MEDICAL_DATA = {
       "note": "Даже без передозировки наносит небольшой радиационный и кислотный урон. За цикл: −0,6 клеточного, +0,15 радиационного и +0,15 кислотного урона. От 11 ед. добавляется ещё +0,2 радиационного.",
       "color": "#c8ff75",
       "source": "Resources/Prototypes/Reagents/medicine.yml"
+    },
+    {
+      "id": "Kelotane",
+      "name": "Келотан",
+      "level": "base",
+      "group": "Ожоги",
+      "treats": "Лечит термические, электрические и холодовые повреждения.",
+      "overdose": 30,
+      "harm": "От 30 ед. усиливает потерю жидкости и жажду.",
+      "note": "От 25 ед. возможны сообщения о тошноте и жажде. Кислотный урон не лечит.",
+      "color": "#bf3d19",
+      "source": "Resources/Prototypes/Reagents/medicine.yml",
+      "targets": [
+        "heat",
+        "shock",
+        "cold"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "Arcryox",
+      "name": "Аркриокс",
+      "level": "advanced",
+      "group": "Крио",
+      "treats": "Лечит механические повреждения, ожоги, токсины и радиационный урон, в том числе у мёртвых.",
+      "overdose": null,
+      "harm": "",
+      "note": "Требует температуры тела не выше 213 K (−60,15 °C). Не лечит удушье, кровопотерю и клеточный урон. Сам по себе не оживляет.",
+      "color": "#0cbfe9",
+      "source": "Resources/Prototypes/Reagents/medicine.yml",
+      "targets": [
+        "piercing",
+        "blunt",
+        "slash",
+        "heat",
+        "shock",
+        "cold",
+        "caustic",
+        "poison",
+        "radiation"
+      ],
+      "aliases": [
+        "акриокс",
+        "акреокс"
+      ]
+    },
+    {
+      "id": "Ethylredoxrazine",
+      "name": "Этилредоксразин",
+      "level": "base",
+      "group": "Опьянение",
+      "treats": "Снимает алкогольное опьянение и лечит небольшой токсический урон.",
+      "overdose": null,
+      "harm": "",
+      "note": "Сокращает эффект опьянения на 18 секунд за срабатывание. Это снятие эффекта, а не удаление всех реагентов из крови.",
+      "color": "#2d5708",
+      "source": "Resources/Prototypes/Reagents/medicine.yml",
+      "targets": [
+        "alcohol",
+        "poison"
+      ],
+      "aliases": [
+        "этилредоксаразин"
+      ]
+    },
+    {
+      "id": "Stellibinin",
+      "name": "Стеллибинин",
+      "level": "advanced",
+      "group": "Токсины",
+      "treats": "Лечит токсический урон и выводит аматоксин.",
+      "overdose": null,
+      "harm": "",
+      "note": "За цикл лечит 4 токсического урона; при наличии аматоксина от 1 ед. удаляет 3 ед. этого яда.",
+      "color": "#2b2f77",
+      "source": "Resources/Prototypes/Reagents/medicine.yml",
+      "targets": [
+        "poison"
+      ],
+      "aliases": [
+        "стелебенин",
+        "стелибинин"
+      ]
+    },
+    {
+      "id": "Charcoal",
+      "name": "Уголь",
+      "level": "base",
+      "group": "Токсины",
+      "treats": "Лечит токсический урон и очищает кровоток от других реагентов.",
+      "overdose": null,
+      "harm": "",
+      "note": "Выводит не только яды, но и лекарства. Сам уголь исключён из очистки.",
+      "color": "#22282b",
+      "source": "Resources/Prototypes/Reagents/chemicals.yml",
+      "targets": [
+        "poison",
+        "cleanse"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "Ultravasculine",
+      "name": "Ультраваскулин",
+      "level": "advanced",
+      "group": "Токсины",
+      "treats": "Лечит токсинную группу: токсический и радиационный урон; выводит гистамин.",
+      "overdose": 20,
+      "harm": "От 20 ед. наносит сильный ушибный урон. Ровно на 20 ед. срабатывают обе ветки эффектов.",
+      "note": "Наносит ушибный урон даже без передоза. При переработке гистамина добавляет ультраваскулин в организм — следите за его количеством.",
+      "color": "#520e30",
+      "source": "Resources/Prototypes/Reagents/medicine.yml",
+      "targets": [
+        "poison",
+        "radiation"
+      ],
+      "aliases": [
+        "ультравоскулин"
+      ]
+    },
+    {
+      "id": "PolypyryliumOligomers",
+      "name": "Олигомеры полипирилия",
+      "level": "advanced",
+      "group": "Комплексное",
+      "treats": "Лечат ушибы, порезы, уколы, удушье и урон от кровопотери; уменьшают кровотечение.",
+      "overdose": 30,
+      "harm": "Дополнительный урон от удушья.",
+      "note": "Не восполняют объём крови. Уменьшение кровотечения и лечение урона от кровопотери — разные эффекты.",
+      "color": "#9423FF",
+      "source": "Resources/Prototypes/Reagents/medicine.yml",
+      "targets": [
+        "piercing",
+        "blunt",
+        "slash",
+        "air",
+        "bloodloss",
+        "bleed"
+      ],
+      "aliases": [
+        "алигомеры"
+      ]
+    },
+    {
+      "id": "Opporozidone",
+      "name": "Оппорозидон",
+      "level": "advanced",
+      "group": "Гниение",
+      "treats": "Уменьшает накопленное гниение мёртвого тела.",
+      "overdose": null,
+      "harm": "",
+      "note": "За срабатывание убирает 20 секунд гниения. Работает только на мёртвом пациенте при температуре тела не выше 150 K (−123,15 °C). Сам по себе не оживляет.",
+      "color": "#b5e36d",
+      "source": "Resources/Prototypes/Reagents/medicine.yml",
+      "targets": [
+        "rot"
+      ],
+      "aliases": [
+        "опорозидон"
+      ]
+    },
+    {
+      "id": "Ipecac",
+      "name": "Ипекак",
+      "level": "advanced",
+      "group": "Очистка",
+      "treats": "Вызывает рвоту при наличии от 4 ед. в кровотоке.",
+      "overdose": null,
+      "harm": "",
+      "note": "От 4 ед. шанс рвоты — 30% за срабатывание. Это порог действия, а не передозировка. Напрямую токсический урон не лечит.",
+      "color": "#422912",
+      "source": "Resources/Prototypes/Reagents/medicine.yml",
+      "targets": [
+        "vomit"
+      ],
+      "aliases": []
     }
   ]
 };
