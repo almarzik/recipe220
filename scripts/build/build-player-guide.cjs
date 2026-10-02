@@ -1,6 +1,6 @@
 const fs=require('node:fs');
 const path=require('node:path');
-const raw=fs.readFileSync(path.join(__dirname,'player-guides/chemistry-original.txt'),'utf8');
+const raw=fs.readFileSync(path.join(require('../project-paths.cjs').projectRoot, 'player-guides/chemistry-original.txt'),'utf8');
 const plain=raw.replace(/\[(?:\/?(?:head|italic|bold|color))(?:=[^\]]*)?\]/g,'').replace(/\r/g,'');
 const labels={
   '1':['Подготовка рабочего места','Оборудование и порядок загрузки реагентов'],
@@ -43,5 +43,5 @@ for(const section of sections)for(const [index,block] of section.blocks.entries(
   block.batch=require('./player-batches.cjs')(section.id,block);
 }
 const cards=sections.flatMap(section=>section.blocks.filter(b=>b.batch).map(b=>({id:b.cardId,name:b.title,category:'chem',playerGuide:true,author:guide.author,stage:section.id,stageTitle:section.title,source:guide.source,prototype:b.cardId,officialRecipeId:b.recipeId,ingredients:b.batch.ingredients,outputs:[],conditions:[],method:'Партия игрока',steps:b.paragraphs.flatMap(p=>p.split(/(?<=[.!?])\s+(?=[А-ЯЁ])/u)),yieldText:b.batch.yieldText,note:b.batch.note})));
-fs.writeFileSync(path.join(__dirname,'player-guides.js'),'// Structured from the supplied player guide; not game prototype data.\nwindow.PLAYER_GUIDES = '+JSON.stringify([guide],null,2)+';\nwindow.PLAYER_RECIPES = '+JSON.stringify(cards,null,2)+';\n');
+fs.writeFileSync(path.join(require('../project-paths.cjs').projectRoot, 'data/player-guides.js'),'// Structured from the supplied player guide; not game prototype data.\nwindow.PLAYER_GUIDES = '+JSON.stringify([guide],null,2)+';\nwindow.PLAYER_RECIPES = '+JSON.stringify(cards,null,2)+';\n');
 console.log(`Imported ${stock.length} stock entries, ${sections.length} sections, ${sections.reduce((n,s)=>n+s.blocks.length,0)} blocks.`);

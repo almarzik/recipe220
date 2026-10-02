@@ -1,5 +1,5 @@
 const fs=require('node:fs'),path=require('node:path'),YAML=require('yaml');
-const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const root=require('../project-paths.cjs').gameRoot,read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);
 const locales={},descriptions={};
 for(const file of walk(path.join(root,'Resources/Locale/ru-RU')).filter(p=>p.endsWith('.ftl'))){
@@ -14,7 +14,7 @@ const triggers=parse(triggerSource),effects=parse(effectSource),weights=triggers
 const gasNames={Oxygen:'кислород',WaterVapor:'водяной пар',CarbonDioxide:'диоксид углерода',Plasma:'плазма',Tritium:'тритий',Ammonia:'аммиак',NitrousOxide:'оксид азота',Frezon:'фрезон'};
 const reagentNames={};
 // Existing recipe data contains reagent names resolved from this same checkout.
-const vm=require('node:vm'),context={window:{}};vm.runInNewContext(fs.readFileSync(path.join(__dirname,'recipes.js'),'utf8'),context);
+const vm=require('node:vm'),context={window:{}};vm.runInNewContext(fs.readFileSync(path.join(require('../project-paths.cjs').projectRoot, 'data/recipes.js'),'utf8'),context);
 for(const r of context.window.RECIPE_DATA.recipes)for(const i of [...r.ingredients,...r.outputs])if(i.key.startsWith('reagent:'))reagentNames[i.id]=i.name;
 const spawnNames={RandomFloraTree:'Случайное дерево',RandomInstruments:'Случайный музыкальный инструмент',RandomAnomalySpawner:'Случайная аномалия',RandomArtifactSpawner:'Случайный артефакт',GenericTrashItems:'Перерабатываемый мусор',AllPlushiesTable:'Плюшевые игрушки'};
 const reagent=id=>reagentNames[id]||id,entity=id=>locales['ent-'+id]||spawnNames[id]||id;
@@ -90,5 +90,5 @@ const data={source:triggerSource,effectSource,generated:new Date().toISOString()
   triggers:triggers.filter(p=>p.type==='xenoArchTrigger').map(p=>({id:p.id,name:locales[p.tip]||p.tip,active:!!weights[p.id],status:weights[p.id]?'Стандартная генерация':'Вне стандартной генерации',...explainTrigger(p),raw:p,source:triggerSource})),
   effects:effects.filter(p=>p.type==='entity'&&!p.abstract).map(p=>({id:p.id,name:descriptions['ent-'+p.id]||extraNames[p.id]||p.description,active:defaultEffects.has(p.id)||handheldEffects.has(p.id),status:defaultEffects.has(p.id)?'Стандартная генерация':handheldEffects.has(p.id)?'Только ручные артефакты':'Вне стандартных таблиц',...explainEffect(p),raw:p,source:effectSource})),
 };
-fs.writeFileSync(path.join(__dirname,'scientist-data.js'),'window.SCIENTIST_DATA = '+JSON.stringify(data,null,2)+';\n');
+fs.writeFileSync(path.join(require('../project-paths.cjs').projectRoot, 'data/scientist-data.js'),'window.SCIENTIST_DATA = '+JSON.stringify(data,null,2)+';\n');
 console.log(`${data.triggers.length} triggers; ${data.effects.length} effects`);

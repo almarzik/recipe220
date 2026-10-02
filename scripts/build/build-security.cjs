@@ -1,6 +1,6 @@
 // Source material is CC BY-NC-SA 4.0; see attribution in security-data.js and the UI.
 const fs=require('node:fs'),path=require('node:path'),{JSDOM}=require('jsdom');
-const html=fs.readFileSync(path.join(__dirname,'security-source.html'),'utf8');
+const html=fs.readFileSync(path.join(require('../project-paths.cjs').projectRoot, 'sources/security-source.html'),'utf8');
 const document=new JSDOM(html).window.document;
 const examples={
   100:'Сотрудник намеренно разбил лампы в коридоре. Граффити само по себе к этой статье не относится.',
@@ -48,5 +48,5 @@ const laws=[...document.querySelectorAll('h5')].map(h=>{
 }).filter(Boolean);
 if(laws.length!==32||new Set(laws.map(l=>l.code)).size!==laws.length)throw Error('Source structure changed; review the import.');
 const data={source:'https://wiki14.ss220.club/wiki/Космический_Закон',revision:Number(html.match(/wgRevisionId":(\d+)/)[1]),updated:document.querySelector('#footer-info-lastmod').textContent.trim(),license:'https://creativecommons.org/licenses/by-nc-sa/4.0/',attribution:'Авторы SS220 SS14 WIKI. Текст статей сохранён; компоновка изменена, учебные примеры добавлены.',laws};
-fs.writeFileSync(path.join(__dirname,'security-data.js'),'window.SECURITY_DATA = '+JSON.stringify(data,null,2)+';\n');
+fs.writeFileSync(path.join(require('../project-paths.cjs').projectRoot, 'data/security-data.js'),'window.SECURITY_DATA = '+JSON.stringify(data,null,2)+';\n');
 console.log(`Imported ${laws.length} articles, revision ${data.revision}`);

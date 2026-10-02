@@ -1,5 +1,5 @@
 const fs=require('node:fs'),path=require('node:path'),YAML=require('yaml');
-const root=path.join(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8').replace(/^\uFEFF/,'');
+const root=require('../project-paths.cjs').gameRoot,read=p=>fs.readFileSync(path.join(root,p),'utf8').replace(/^\uFEFF/,'');
 // Reaction effect tags are removed only for YAML parsing; the effect ID is retained separately.
 const reactionSource='Resources/Prototypes/Atmospherics/reactions.yml';
 const reactions=YAML.parse(read(reactionSource).replace(/!type:(\w+)\s*\{\}/g,'{ type: $1 }')).filter(r=>r.type==='gasReaction');
@@ -12,5 +12,5 @@ const constants=Object.fromEntries(keys.map(k=>[k,constant(k)]));
 for(const r of reactions)r.source=reactionSource;
 const images=require('./build-atmos-thumbnails.cjs')(root,gases);
 const data={gases,reactions,constants,images,generated:new Date().toISOString().slice(0,10)};
-fs.writeFileSync(path.join(__dirname,'engineering-data.js'),'window.ENGINEERING_DATA = '+JSON.stringify(data,null,2)+';\n');
+fs.writeFileSync(path.join(require('../project-paths.cjs').projectRoot, 'data/engineering-data.js'),'window.ENGINEERING_DATA = '+JSON.stringify(data,null,2)+';\n');
 console.log(`Atmos: ${gases.length} gases, ${reactions.length} active reactions`);

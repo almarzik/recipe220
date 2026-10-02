@@ -4,12 +4,14 @@
   "private": true,
   "description": "Локальный каталог рецептов SS14 с рабочим полем",
   "scripts": {
-    "build": "node build-data.cjs && node build-scientist.cjs && node build-anomalies.cjs && node build-engineering.cjs",
-    "build:engineering": "node build-engineering.cjs",
-    "build:scientist": "node build-scientist.cjs",
-    "build:anomalies": "node build-anomalies.cjs",
+    "build": "node scripts/build/build-data.cjs && node scripts/build/build-scientist.cjs && node scripts/build/build-anomalies.cjs && node scripts/build/build-engineering.cjs",
+    "build:engineering": "node scripts/build/build-engineering.cjs",
+    "build:scientist": "node scripts/build/build-scientist.cjs",
+    "build:anomalies": "node scripts/build/build-anomalies.cjs",
     "start": "node server.cjs",
-    "test": "node --test test.cjs security-test.cjs"
+    "test": "node --test tests/*.test.cjs",
+    "build:security": "node scripts/build/build-security.cjs",
+    "build:players": "node scripts/build/build-player-guide.cjs"
   },
   "dependencies": {
     "yaml": "2.9.1"

@@ -1,8 +1,9 @@
+const {projectRoot,gameRoot}=require('../scripts/project-paths.cjs');
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
-const {SecurityDesk:{calculate}}=require('./security.js');
+const {SecurityDesk:{calculate}}=require('../src/features/security/security.js');
 const vm=require('node:vm'),fs=require('node:fs');
-const ctx={window:{}};vm.runInNewContext(fs.readFileSync(__dirname+'/security-data.js','utf8'),ctx);
+const ctx={window:{}};vm.runInNewContext(fs.readFileSync(projectRoot+'/data/security-data.js','utf8'),ctx);
 const laws=(...codes)=>codes.map(code=>ctx.window.SECURITY_DATA.laws.find(l=>l.code===code));
 test('SS220 medical care preserves the sentence, including permanent imprisonment',()=>{
   const r=calculate(laws('200'),{},{medical:true});assert.equal(r.minutes,10);assert.match(r.notes.join(' '),/Таймер продолжает/);

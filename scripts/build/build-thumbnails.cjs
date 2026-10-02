@@ -3,7 +3,7 @@ const path = require('node:path');
 const { createHash } = require('node:crypto');
 
 module.exports = function buildThumbnails({ root, recipes, entities, reagents, creditsFile = 'credits.json' }) {
-  const output = path.join(__dirname, 'assets');
+  const output = path.join(require('../project-paths.cjs').projectRoot, 'assets');
   fs.mkdirSync(output, { recursive: true });
   const images = {}, credits = new Map(), spriteCache = new Map();
   function sprite(id, seen = new Set()) {

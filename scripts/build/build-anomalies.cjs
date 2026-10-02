@@ -1,5 +1,5 @@
 const fs=require('node:fs'),path=require('node:path'),YAML=require('yaml');
-const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const root=require('../project-paths.cjs').gameRoot,read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const source='Resources/Prototypes/Entities/Structures/Specific/Anomaly/anomalies.yml',behaviorSource='Resources/Prototypes/Anomaly/behaviours.yml';
 const parse=p=>YAML.parse(read(p).replace(/!type:\w+/g,'')),protos=parse(source),byId=new Map(protos.map(p=>[p.id,p]));
 function resolve(id){const p=byId.get(id);if(!p)return [];const parent=p.parent?[p.parent].flat().flatMap(resolve):[];const m=new Map(parent.map(c=>[c.type,c]));for(const c of p.components||[])m.set(c.type,{...m.get(c.type),...c});return [...m.values()];}
@@ -35,5 +35,5 @@ const behaviors=parse(behaviorSource).filter(p=>p.type==='anomalyBehavior').map(
   }
   return {id:p.id,name:loc[p.description]||p.id,details,raw:p,source:behaviorSource};
 });
-fs.writeFileSync(path.join(__dirname,'anomalies-data.js'),'window.ANOMALY_DATA = '+JSON.stringify({anomalies,behaviors,generated:new Date().toISOString().slice(0,10)},null,2)+';\n');
+fs.writeFileSync(path.join(require('../project-paths.cjs').projectRoot, 'data/anomalies-data.js'),'window.ANOMALY_DATA = '+JSON.stringify({anomalies,behaviors,generated:new Date().toISOString().slice(0,10)},null,2)+';\n');
 console.log(`${anomalies.length} anomaly variants; ${behaviors.length} behaviors`);

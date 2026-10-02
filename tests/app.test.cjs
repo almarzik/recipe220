@@ -1,16 +1,17 @@
+const {projectRoot,gameRoot}=require('../scripts/project-paths.cjs');
 const {test} = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const {JSDOM} = require('jsdom');
-const text = name => fs.readFileSync(path.join(__dirname,name),'utf8');
-const context = {window:{}};vm.runInNewContext(text('recipes.js'),context);
+const text = name => fs.readFileSync(path.join(projectRoot,name),'utf8');
+const context = {window:{}};vm.runInNewContext(text('data/recipes.js'),context);
 const data = context.window.RECIPE_DATA;
 const byId = new Map(data.recipes.map(r=>[r.id,r]));
 test('all engineering views use pressure units and economics converts reference conditions',()=>{
   const a=app();try{
-    for(const file of ['engineering-data.js','engineering.js','atmos-economy.js','supermatter.js','sm-observer.js'])a.w.eval(text(file));
+    for(const file of ['data/engineering-data.js','src/features/engineering/engineering.js','src/features/engineering/atmos-economy.js','src/features/engineering/supermatter.js','src/features/engineering/sm-observer.js'])a.w.eval(text(file));
     for(const mode of ['reactions','gases','equipment','practice','calculator','economy','sm']){a.click(`[data-atmos-mode="${mode}"]`);assert.doesNotMatch(a.doc.querySelector('#engineering').textContent,/мол(?:ь|ей|ях|и\b|яр)/i);}
     assert.equal(a.doc.querySelector('#sm-entry [name="moles"]'),null);
     const f=a.doc.querySelector('#atmos-economy-form'),m=a.doc.querySelector('#atmos-mix-form');m.elements.preset.value='air';m.dispatchEvent(new a.w.Event('input'));
@@ -21,10 +22,10 @@ test('all engineering views use pressure units and economics converts reference 
   }finally{a.close();}
 });
 test('pressure mixture conserves partial pressures and converts temperature and volume for pricing',()=>{
-  const {pressureMixture}=require('./engineering.js');const a=pressureMixture('air',1000,293.15,1000),b=pressureMixture('air',1000,20,2000,'C');
+  const {pressureMixture}=require('../src/features/engineering/engineering.js');const a=pressureMixture('air',1000,293.15,1000),b=pressureMixture('air',1000,20,2000,'C');
   assert.equal(a.rows[0].pressure,210);assert.equal(a.rows[1].pressure,790);assert.equal(a.rows.at(-1).until,1000);assert.equal(b.moles,a.moles*2);
   assert.equal(pressureMixture('air',1000,-273.15,1000,'C'),null);assert.equal(pressureMixture('air',1000,0,1000),null);assert.equal(pressureMixture('air',1000,20,0,'C'),null);
-  const appState=app();try{const w=appState.w;for(const file of ['engineering-data.js','engineering.js','atmos-economy.js'])w.eval(text(file));const f=appState.doc.querySelector('#atmos-mix-form');f.elements.preset.value='air';f.dispatchEvent(new w.Event('input'));assert.match(appState.doc.querySelector('#atmos-mix-output').textContent,/кПа/);assert.doesNotMatch(appState.doc.querySelector('#atmos-mix-output').textContent,/моль/);
+  const appState=app();try{const w=appState.w;for(const file of ['data/engineering-data.js','src/features/engineering/engineering.js','src/features/engineering/atmos-economy.js'])w.eval(text(file));const f=appState.doc.querySelector('#atmos-mix-form');f.elements.preset.value='air';f.dispatchEvent(new w.Event('input'));assert.match(appState.doc.querySelector('#atmos-mix-output').textContent,/кПа/);assert.doesNotMatch(appState.doc.querySelector('#atmos-mix-output').textContent,/моль/);
     f.elements.unit.value='C';f.elements.unit.dispatchEvent(new w.Event('input',{bubbles:true}));assert.equal(Number(f.elements.temperature.value),20);
     appState.click('#economy-from-mix');const cost=appState.doc.querySelector('#atmos-economy-form');assert.ok(Math.abs(Number(cost.elements.namedItem('in-Oxygen').value)-a.rows[0].pressure)<1e-8);
     f.elements.temperature.value='';f.dispatchEvent(new w.Event('input'));assert.match(appState.doc.querySelector('#atmos-mix-output').textContent,/Введите/);
@@ -32,7 +33,7 @@ test('pressure mixture conserves partial pressures and converts temperature and 
 });
 test('SM observer matches game layout, accepts snapshots and never invents missing telemetry',()=>{
   const a=app();try{
-    for(const file of ['engineering-data.js','engineering.js','atmos-economy.js','supermatter.js','sm-observer.js'])a.w.eval(text(file));
+    for(const file of ['data/engineering-data.js','src/features/engineering/engineering.js','src/features/engineering/atmos-economy.js','src/features/engineering/supermatter.js','src/features/engineering/sm-observer.js'])a.w.eval(text(file));
     a.click('#tab-engineering');a.click('[data-atmos-mode="sm"]');
     assert.ok(a.doc.querySelector('.sm-console-grid'));assert.equal(a.doc.querySelector('#sm-read-integrity').textContent,'—');assert.match(a.doc.querySelector('#sm-history-chart').textContent,/Нет замеров/);assert.ok(a.doc.querySelector('#sm-state-chart svg'));
     const entry=a.doc.querySelector('#sm-entry'),form=a.doc.querySelector('#sm-form');
@@ -48,14 +49,14 @@ test('SM observer matches game layout, accepts snapshots and never invents missi
 });
 test('SM observer rejects duplicate time and excessive gas percentages without corrupting history',()=>{
   const a=app();try{
-    for(const file of ['engineering-data.js','engineering.js','supermatter.js','sm-observer.js'])a.w.eval(text(file));
+    for(const file of ['data/engineering-data.js','src/features/engineering/engineering.js','src/features/engineering/supermatter.js','src/features/engineering/sm-observer.js'])a.w.eval(text(file));
     const entry=a.doc.querySelector('#sm-entry'),form=a.doc.querySelector('#sm-form');entry.elements.matter.value='100000';entry.elements.energy.value='44017';entry.elements.namedItem('gas-Oxygen').value='80';entry.elements.namedItem('gas-Nitrogen').value='80';entry.requestSubmit();assert.equal(form.elements.samples.value,'');assert.match(a.doc.querySelector('#sm-entry-status').textContent,/100%/);
     entry.elements.namedItem('gas-Nitrogen').value='20';entry.requestSubmit();entry.elements.time.value='0';entry.requestSubmit();assert.equal(form.elements.samples.value.split('\n').length,1);assert.match(a.doc.querySelector('#sm-entry-status').textContent,/позже/);
     form.elements.samples.value='broken';form.elements.samples.dispatchEvent(new a.w.Event('input',{bubbles:true}));assert.equal(a.doc.querySelector('#sm-read-matter').textContent,'—');assert.match(a.doc.querySelector('#sm-observer-status').textContent,/ошибку/);
   }finally{a.close();}
 });
 test('gas valuation applies dominant-gas purity and time estimates use net collection',()=>{
-  const {value,duration}=require('./atmos-economy.js');
+  const {value,duration}=require('../src/features/engineering/atmos-economy.js');
   assert.equal(value([{amount:100,price:2.5},{amount:100,price:0}],true).value,125);
   assert.equal(value([{amount:100,price:2.5},{amount:100,price:0}],false).value,250);
   assert.equal(value([{amount:0,price:2.5}],true).value,0);
@@ -63,24 +64,24 @@ test('gas valuation applies dominant-gas purity and time estimates use net colle
   assert.deepEqual(duration(0,20,60,200),{rate:1/3,seconds:540});
   assert.equal(duration(20,20,60,200).seconds,null);assert.equal(duration(30,20,60,200).seconds,null);
   assert.equal(duration(200,200,60,200).seconds,0);assert.equal(duration(0,20,0,200),null);
-  const {batch}=require('./atmos-economy.js'),frezon=batch('frezon',510);
+  const {batch}=require('../src/features/engineering/atmos-economy.js'),frezon=batch('frezon',510);
   assert.equal(frezon.output.Frezon,510);assert.equal(frezon.input.Tritium,10);assert.equal(frezon.input.Oxygen,500);
   assert.equal(frezon.input.Nitrogen,frezon.output.Nitrogen);assert.equal(batch('ammonia',100).output.WaterVapor,300);
   assert.equal(batch('frezon',-1),null);
 });
 test('SM shot contribution and stable energy centers match this local implementation',()=>{
-  const s=require('./supermatter.js');assert.deepEqual(s.shot(600,50),{matter:20,energy:80});
+  const s=require('../src/features/engineering/supermatter.js');assert.deepEqual(s.shot(600,50),{matter:20,energy:80});
   assert.equal(s.shot(600,100).matter,0);assert.equal(s.shot(600,0).energy,0);
   assert.ok(Math.abs(s.safeEnergy(100000,1)-44017.0861712557)<1e-7);
   assert.ok(Math.abs(s.safeEnergy(100000,2)-177465.71249998332)<1e-7);
   assert.ok(Math.abs(s.safeEnergy(100000,3)-355758.4029663535)<1e-7);
-  const source=fs.readFileSync(path.join(__dirname,'../Content.Shared/SS220/SuperMatter/Emitter/SharedSuperMatterEmitterExtensionConsts.cs'),'utf8');
+  const source=fs.readFileSync(path.join(gameRoot,'Content.Shared/SS220/SuperMatter/Emitter/SharedSuperMatterEmitterExtensionConsts.cs'),'utf8');
   assert.match(source,/BaseMatter = 20f/);assert.match(source,/BaseEnergy = 80f/);assert.match(source,/BaseMatterPowerDivider = 300f/);
-  const funcs=fs.readFileSync(path.join(__dirname,'../Content.Shared/SS220/SuperMatter/Functions/SuperMatterFunctions.cs'),'utf8');
+  const funcs=fs.readFileSync(path.join(gameRoot,'Content.Shared/SS220/SuperMatter/Functions/SuperMatterFunctions.cs'),'utf8');
   assert.match(funcs,/MatterNondimensionalization = 32f/);assert.match(funcs,/SafeInternalEnergyToMatterCoeff = 800f/);assert.match(funcs,/SafeModes = \[1f, 4f, 8f\]/);
 });
 test('SM estimation uses windowed absolute samples, preserves balance and flags drift and limits',()=>{
-  const s=require('./supermatter.js'),e=s.safeEnergy(100000),opts={target:100000,horizon:300,window:60,gain:.5,count:2,power:1200,ratio:50,mode:1,hits:null};
+  const s=require('../src/features/engineering/supermatter.js'),e=s.safeEnergy(100000),opts={target:100000,horizon:300,window:60,gain:.5,count:2,power:1200,ratio:50,mode:1,hits:null};
   const rows=[0,30,60].map(time=>({time,matter:100000,energy:e})),r=s.tune(rows,opts);
   assert.equal(r.recommendation.power,1200);assert.equal(r.recommendation.ratio,50);assert.equal(r.predicted.matter,0);
   const falling=rows.map((r,i)=>({...r,matter:100120-i*60,energy:e+240-i*120})),fix=s.tune(falling,opts);
@@ -91,13 +92,13 @@ test('SM estimation uses windowed absolute samples, preserves balance and flags 
   const drifting=[0,20,40,60].map((time,i)=>({time,matter:100000+[0,1,10,100][i],energy:e}));assert.ok(s.tune(drifting,opts).notes.some(n=>n.includes('дрейфует')));
 });
 test('SM sample parser rejects stale timestamps, invalid rows and ambiguous empty values',()=>{
-  const {parseSamples}=require('./supermatter.js');
+  const {parseSamples}=require('../src/features/engineering/supermatter.js');
   assert.equal(parseSamples('0; 100 000; 44000,5\n60;99900;43990')[0].energy,44000.5);
   for(const source of ['0;1;2','0;1;2\n0;1;2','0;1;2\n60;;3','0;1;2\n60;Infinity;2','0;1;2\n60;0;2'])assert.throws(()=>parseSamples(source));
 });
 test('atmos economy and SM tabs calculate, preserve entries on tab switch and clear stale advice',()=>{
   const a=app();try{
-    for(const file of ['engineering-data.js','engineering.js','atmos-economy.js','supermatter.js'])a.w.eval(text(file));
+    for(const file of ['data/engineering-data.js','src/features/engineering/engineering.js','src/features/engineering/atmos-economy.js','src/features/engineering/supermatter.js'])a.w.eval(text(file));
     a.click('#tab-engineering');a.click('[data-atmos-mode="economy"]');
     assert.equal(a.doc.querySelector('#atmos-economy').hidden,false);assert.equal(a.doc.querySelector('#atmos-results').hidden,true);
     const f=a.doc.querySelector('#atmos-economy-form');f.elements.namedItem('out-Frezon').value='200';f.dispatchEvent(new a.w.Event('input'));assert.ok(Math.abs(Number(f.elements.namedItem('sell-Frezon').value)-2.5*1000/(8.314462618*293.15))<1e-10);
@@ -114,8 +115,8 @@ test('atmos economy and SM tabs calculate, preserve entries on tab switch and cl
   }finally{a.close();}
 });
 test('atmos data covers active reactions and gas catalog, with local thresholds',()=>{
-  const ctx={window:{}};vm.runInNewContext(text('engineering-data.js'),ctx);const d=ctx.window.ENGINEERING_DATA;
-  const YAML=require('yaml'),source=fs.readFileSync(path.join(__dirname,'../Resources/Prototypes/Atmospherics/reactions.yml'),'utf8').replace(/^\uFEFF/,'').replace(/!type:(\w+)\s*\{\}/g,'{ type: $1 }');
+  const ctx={window:{}};vm.runInNewContext(text('data/engineering-data.js'),ctx);const d=ctx.window.ENGINEERING_DATA;
+  const YAML=require('yaml'),source=fs.readFileSync(path.join(gameRoot,'Resources/Prototypes/Atmospherics/reactions.yml'),'utf8').replace(/^\uFEFF/,'').replace(/!type:(\w+)\s*\{\}/g,'{ type: $1 }');
   assert.deepEqual(Array.from(d.reactions,r=>r.id),YAML.parse(source).map(r=>r.id));
   assert.equal(d.gases.length,9);assert.equal(d.reactions.length,6);
   assert.equal(d.constants.SuperSaturationThreshold,96);assert.equal(d.constants.SuperSaturationEnds,32);
@@ -123,15 +124,15 @@ test('atmos data covers active reactions and gas catalog, with local thresholds'
   assert.equal(d.reactions.find(r=>r.id==='N2ODecomposition').minimumTemperature,850);
 });
 test('atmos thumbnails cover gases, reactions, equipment and SM with real RSI assets',()=>{
-  const ctx={window:{}};vm.runInNewContext(text('engineering-data.js'),ctx);const d=ctx.window.ENGINEERING_DATA;
+  const ctx={window:{}};vm.runInNewContext(text('data/engineering-data.js'),ctx);const d=ctx.window.ENGINEERING_DATA;
   const keys=[...d.gases.map(g=>g.id),...d.reactions.map(r=>r.id),...Array.from({length:10},(_,i)=>'equipment-'+i),...Array.from({length:6},(_,i)=>'practice-'+i),'sm','emitter'];
-  for(const key of keys){const visual=d.images[key];assert.ok(visual?.layers.length,key);for(const l of visual.layers){assert.match(l.src,/^assets\/[a-f0-9]{20}\.png$/);const bytes=fs.readFileSync(path.join(__dirname,l.src));assert.equal(bytes.readUInt32BE(16),l.sheetWidth);assert.equal(bytes.readUInt32BE(20),l.sheetHeight);assert.ok(l.width>0&&l.height>0&&l.width<=l.sheetWidth&&l.height<=l.sheetHeight);}}
+  for(const key of keys){const visual=d.images[key];assert.ok(visual?.layers.length,key);for(const l of visual.layers){assert.match(l.src,/^assets\/[a-f0-9]{20}\.png$/);const bytes=fs.readFileSync(path.join(projectRoot,l.src));assert.equal(bytes.readUInt32BE(16),l.sheetWidth);assert.equal(bytes.readUInt32BE(20),l.sheetHeight);assert.ok(l.width>0&&l.height>0&&l.width<=l.sheetWidth&&l.height<=l.sheetHeight);}}
   assert.equal(d.images.sm.prototype,'SuperMatterCrystal');assert.equal(d.images.emitter.prototype,'SMEmitter');
   assert.ok(JSON.parse(text('assets/engineering-credits.json')).every(c=>c.source&&c.license&&c.copyright));
-  const a=app();try{for(const file of ['engineering-data.js','engineering.js','atmos-economy.js','supermatter.js'])a.w.eval(text(file));a.click('#tab-engineering');assert.equal(a.doc.querySelectorAll('[data-atmos-id] .atmos-thumbnail').length,6);a.click('[data-atmos-mode="gases"]');assert.equal(a.doc.querySelectorAll('[data-atmos-id] .atmos-thumbnail').length,9);assert.equal(a.doc.querySelectorAll('#atmos-economy tbody .atmos-thumbnail').length,9);assert.equal(a.doc.querySelectorAll('#atmos-sm .atmos-thumbnail').length,2);}finally{a.close();}
+  const a=app();try{for(const file of ['data/engineering-data.js','src/features/engineering/engineering.js','src/features/engineering/atmos-economy.js','src/features/engineering/supermatter.js'])a.w.eval(text(file));a.click('#tab-engineering');assert.equal(a.doc.querySelectorAll('[data-atmos-id] .atmos-thumbnail').length,6);a.click('[data-atmos-mode="gases"]');assert.equal(a.doc.querySelectorAll('[data-atmos-id] .atmos-thumbnail').length,9);assert.equal(a.doc.querySelectorAll('#atmos-economy tbody .atmos-thumbnail').length,9);assert.equal(a.doc.querySelectorAll('#atmos-sm .atmos-thumbnail').length,2);}finally{a.close();}
 });
 test('atmos calculators preserve moles and distinguish gas volume from reagent units',()=>{
-  const {mixture,pressure}=require('./engineering.js');
+  const {mixture,pressure}=require('../src/features/engineering/engineering.js');
   const trit=mixture('tritium',970);assert.equal(trit.find(r=>r.gas==='Oxygen').moles,960);assert.equal(trit.find(r=>r.gas==='Plasma').moles,10);
   const frezon=mixture('frezon',560);assert.ok(Math.abs(frezon.reduce((s,r)=>s+r.moles,0)-560)<1e-9);assert.equal(frezon.find(r=>r.gas==='Tritium').moles,10);
   assert.ok(Math.abs(pressure(100,293.15,1000)-243.73847164667)<1e-6);
@@ -139,7 +140,7 @@ test('atmos calculators preserve moles and distinguish gas volume from reagent u
 });
 test('engineering navigation, search and calculator work without losing saved cards',()=>{
   const a=app();try{
-    a.w.eval(text('engineering-data.js'));a.w.eval(text('engineering.js'));a.click('#tab-engineering');
+    a.w.eval(text('data/engineering-data.js'));a.w.eval(text('src/features/engineering/engineering.js'));a.click('#tab-engineering');
     assert.equal(a.doc.querySelector('#engineering').hidden,false);assert.equal(a.doc.querySelector('.workspace').hidden,true);
     assert.equal(a.doc.querySelectorAll('[data-atmos-id]').length,6);
     const search=a.doc.querySelector('#atmos-search');search.value='фрезон';search.dispatchEvent(new a.w.Event('input'));
@@ -151,17 +152,17 @@ test('engineering navigation, search and calculator work without losing saved ca
   }finally{a.close();}
 });
 test('anomaly data includes all spatial variants, inherited rock effects and all behaviors',()=>{
-  const ctx={window:{}};vm.runInNewContext(text('anomalies-data.js'),ctx);const d=ctx.window.ANOMALY_DATA;
+  const ctx={window:{}};vm.runInNewContext(text('data/anomalies-data.js'),ctx);const d=ctx.window.ANOMALY_DATA;
   assert.equal(d.anomalies.length,18);assert.equal(d.behaviors.length,21);
   assert.ok(d.anomalies.every(a=>a.name&&a.effect&&a.critical&&a.advice&&a.core));
   assert.ok(d.anomalies.find(a=>a.id==='AnomalyRockUranium').components.some(c=>c.type==='TileSpawnAnomaly'));
   assert.match(d.behaviors.find(a=>a.id==='InconstancyParticle').details.join(' '),/80%/);
   assert.match(d.behaviors.find(a=>a.id==='FullSafe').details[0],/очки ×0.05/);
-  const YAML=require('yaml'),source=YAML.parse(fs.readFileSync(path.join(__dirname,'../Resources/Prototypes/Anomaly/behaviours.yml'),'utf8'));
+  const YAML=require('yaml'),source=YAML.parse(fs.readFileSync(path.join(gameRoot,'Resources/Prototypes/Anomaly/behaviours.yml'),'utf8'));
   assert.deepEqual(Array.from(d.behaviors,b=>b.id),source.filter(p=>p.type==='anomalyBehavior').map(p=>p.id));
 });
 test('anomaly advice respects random particle roles, hidden readings and supercritical state',()=>{
-  const {advise}=require('./anomalies.js').AnomalyDesk;
+  const {advise}=require('../src/features/scientist/anomalies.js').AnomalyDesk;
   assert.match(advise('growing',{containment:'Delta'}),/Дельта/);
   assert.match(advise('growing',{containment:'Sigma'}),/Сигма/);
   assert.match(advise('growing',{}),/универсального безопасного выбора нет/);
@@ -173,7 +174,7 @@ test('anomaly advice respects random particle roles, hidden readings and supercr
 });
 test('anomalies is a nested scientist tab, preserves artifact input, and supports search and scanner helper',()=>{
   const a=scientistApp();try{
-    a.w.eval(text('anomalies-data.js'));a.w.eval(text('anomalies.js'));
+    a.w.eval(text('data/anomalies-data.js'));a.w.eval(text('src/features/scientist/anomalies.js'));
     const artifactSearch=a.doc.querySelector('#science-search');artifactSearch.value='кровь';artifactSearch.dispatchEvent(new a.w.Event('input'));
     a.click('[data-science-topic="anomalies"]');assert.equal(a.doc.querySelector('#science-artifacts').hidden,true);assert.equal(a.doc.querySelector('#science-anomalies').hidden,false);assert.equal(a.doc.querySelector('.workspace').hidden,true);
     assert.equal(a.doc.querySelectorAll('[data-anomaly-id]').length,18);
@@ -183,11 +184,11 @@ test('anomalies is a nested scientist tab, preserves artifact input, and support
     a.click('[data-science-topic="artifacts"]');assert.equal(artifactSearch.value,'кровь');assert.equal(a.doc.querySelector('#science-artifacts').hidden,false);
   }finally{a.close();}
 });
-function scientistApp(preferences={}){const a=app(undefined,preferences);a.w.eval(text('scientist-data.js'));a.w.eval(text('scientist.js'));a.click('#tab-scientist');return a;}
+function scientistApp(preferences={}){const a=app(undefined,preferences);a.w.eval(text('data/scientist-data.js'));a.w.eval(text('src/features/scientist/scientist.js'));a.click('#tab-scientist');return a;}
 test('scientist data covers every trigger and effect prototype and separates inactive variants',()=>{
-  const ctx={window:{}};vm.runInNewContext(text('scientist-data.js'),ctx);const d=ctx.window.SCIENTIST_DATA,YAML=require('yaml');
+  const ctx={window:{}};vm.runInNewContext(text('data/scientist-data.js'),ctx);const d=ctx.window.SCIENTIST_DATA,YAML=require('yaml');
   for(const [key,file,type] of [['triggers','triggers.yml','xenoArchTrigger'],['effects','effects.yml','entity']]){
-    const source=YAML.parse(fs.readFileSync(path.join(__dirname,'../Resources/Prototypes/XenoArch',file),'utf8').replace(/!type:[\w]+/g,''));
+    const source=YAML.parse(fs.readFileSync(path.join(gameRoot,'Resources/Prototypes/XenoArch',file),'utf8').replace(/!type:[\w]+/g,''));
     const entries=source.filter(v=>v.type===type&&!v.abstract);
     assert.deepEqual(Array.from(d[key],v=>v.id),entries.map(v=>v.id));
     assert.ok(d[key].every(v=>v.name&&v.steps.length&&v.status&&v.source));
@@ -222,7 +223,7 @@ test('scientist hides workspace, preserves collapse state and saves research not
   }finally{a.close();}
   const b=scientistApp({'ss14-scientist-notes':notes});try{assert.equal(b.doc.querySelector('#science-notes').value,notes);assert.equal(b.doc.querySelector('#scientist img'),null);}finally{b.close();}
 });
-function securityApp(){const a=app();a.w.eval(text('security-data.js'));a.w.eval(text('security.js'));a.click('#tab-security');return a;}
+function securityApp(){const a=app();a.w.eval(text('data/security-data.js'));a.w.eval(text('src/features/security/security.js'));a.click('#tab-security');return a;}
 test('security cards select on click, explanations only respond to their own target, and report is removed',()=>{
   const a=securityApp();try{
     assert.equal(a.doc.querySelector('#security-form,.security-report,#security-output'),null);assert.equal(a.w.SecurityDesk.documentText,undefined);
@@ -286,8 +287,8 @@ test('security calculator blocks damage double-counting and clears obsolete conf
   }finally{a.close();}
 });
 test('security source imports every current article with attribution, examples and no obsolete 107',()=>{
-  const ctx={window:{}};vm.runInNewContext(text('security-data.js'),ctx);const security=ctx.window.SECURITY_DATA;
-  const source=new JSDOM(text('security-source.html')).window.document;
+  const ctx={window:{}};vm.runInNewContext(text('data/security-data.js'),ctx);const security=ctx.window.SECURITY_DATA;
+  const source=new JSDOM(text('sources/security-source.html')).window.document;
   const headings=[...source.querySelectorAll('h5')].map(h=>h.textContent.trim());
   assert.equal(security.laws.length,32);assert.equal(security.revision,14940);
   assert.deepEqual(Array.from(security.laws,l=>l.code+' — '+l.name),headings);
@@ -298,7 +299,7 @@ test('security source imports every current article with attribution, examples a
 test('security hides the entire workspace and restores cards and collapse preference when leaving',()=>{
   const a=app();try{
     a.search('DexalinPlus');a.click('[data-add="reaction:DexalinPlus"]');const saved=a.saved();
-    a.w.eval(text('security-data.js'));a.w.eval(text('security.js'));a.click('#tab-security');
+    a.w.eval(text('data/security-data.js'));a.w.eval(text('src/features/security/security.js'));a.click('#tab-security');
     for(const selector of ['.workspace','.workspace-heading','#workspace-jump'])assert.equal(a.doc.querySelector(selector).hidden,true);
     assert.equal(a.doc.querySelector('#security').hidden,false);assert.equal(a.doc.querySelector('#catalog').hidden,true);
     a.click('#tab-recipes');assert.equal(a.doc.querySelector('.workspace').hidden,false);assert.equal(a.saved(),saved);
@@ -316,9 +317,9 @@ test('security matrix search, hover examples, dialog and article selection work 
   }finally{a.close();}
 });
 test('kitchen stocks match Chefvend and require selected flour, milk and animal products',()=>{
-  const {ChefMenu}=require('./chef-menu.js'),YAML=require('yaml');
+  const {ChefMenu}=require('../src/features/recipes/chef-menu.js'),YAML=require('yaml');
   const options=ChefMenu.stockOptions(data),vend=options.filter(o=>o.group==='ШефВенд');
-  const inventory=YAML.parse(fs.readFileSync(path.join(__dirname,'../Resources/Prototypes/Catalog/VendingMachines/Inventories/chefvend.yml'),'utf8'))[0].startingInventory;
+  const inventory=YAML.parse(fs.readFileSync(path.join(gameRoot,'Resources/Prototypes/Catalog/VendingMachines/Inventories/chefvend.yml'),'utf8'))[0].startingInventory;
   assert.deepEqual(vend.map(o=>o.key.slice(6)).sort(),Object.keys(inventory).sort());
   const dish=keys=>({ingredients:keys.map(key=>({key})),outputs:[{key:'entity:TestDish'}]});
   assert.equal(ChefMenu.stockFilter(data,[])(byId.get('microwave:RecipeBun')),false);
@@ -343,7 +344,7 @@ test('Chefvend preset keeps selected plants, persists supplies and builds a menu
   }finally{a.close();}
 });
 test('produce menu follows nested preparations and excludes unavailable vegetables',()=>{
-  const {ChefMenu}=require('./chef-menu.js');
+  const {ChefMenu}=require('../src/features/recipes/chef-menu.js');
   const tomato=ChefMenu.produceFilter(data,['entity:FoodTomato']);
   assert.equal(tomato(byId.get('microwave:RecipeTomatoSoup')),true);
   assert.equal(tomato(byId.get('microwave:RecipeShawarma')),false);
@@ -405,12 +406,12 @@ function app(saved,preferences={}) {
   w.HTMLDialogElement.prototype.close=function(){this.open=false;};
   if(saved)w.localStorage.setItem('ss14-recipe-workbench-v1',saved);
   for(const [key,value] of Object.entries(preferences))w.localStorage.setItem(key,value);
-  w.eval(text('recipes.js'));w.eval(text('chemistry.js'));w.eval(text('player-guides.js'));w.eval(text('chef-menu.js'));w.eval(text('app.js'));w.eval(text('botany.js'));w.eval(text('players.js'));
+  w.eval(text('data/recipes.js'));w.eval(text('src/features/recipes/chemistry.js'));w.eval(text('data/player-guides.js'));w.eval(text('src/features/recipes/chef-menu.js'));w.eval(text('src/components/navigation.js'));w.eval(text('src/app.js'));w.eval(text('src/features/botany/botany.js'));w.eval(text('src/features/players/players.js'));
   return {w,doc:w.document,close:()=>{w.document.getElementById('board').replaceChildren();w.close();},click:selector=>{const el=w.document.querySelector(selector);assert.ok(el,selector);el.click();},search:q=>{const input=w.document.querySelector('#search');input.value=q;input.dispatchEvent(new w.Event('input',{bubbles:true}));},saved:()=>w.localStorage.getItem('ss14-recipe-workbench-v1')};
 }
 test('data has unique recipes, real sources, valid amounts and consistent dependency links',()=>{
   assert.ok(data.recipes.length>700);assert.equal(byId.size,data.recipes.length);
-  for(const r of data.recipes){assert.ok(['chem','food','bar'].includes(r.category));assert.ok(fs.existsSync(path.join(__dirname,'..',r.source)),r.source);assert.ok(r.ingredients.length);for(const i of [...r.ingredients,...r.outputs])assert.ok(Number.isFinite(i.amount)&&i.amount>0,r.id+': '+i.id);}
+  for(const r of data.recipes){assert.ok(['chem','food','bar'].includes(r.category));assert.ok(fs.existsSync(path.join(gameRoot,r.source)),r.source);assert.ok(r.ingredients.length);for(const i of [...r.ingredients,...r.outputs])assert.ok(Number.isFinite(i.amount)&&i.amount>0,r.id+': '+i.id);}
   for(const [key,ids] of Object.entries(data.byOutput))for(const id of ids)assert.ok(byId.get(id)?.outputs.some(o=>o.key===key),id);
 });
 test('actual local recipe values: dough, slices, catalyst, temperature and shaker',()=>{
@@ -465,7 +466,7 @@ test('food thumbnails cover every item and use existing first-frame PNG assets',
   for(const r of data.recipes.filter(r=>r.category==='food'))for(const item of [...r.ingredients,...r.outputs]){
     const visual=data.images[item.key];assert.ok(visual,item.key);
     if(item.key.startsWith('entity:'))assert.ok(visual.layers.length,item.key);
-    for(const layer of visual.layers||[]){assert.ok(fs.existsSync(path.join(__dirname,layer.src)));assert.ok(layer.width>0&&layer.height>0&&layer.sheetWidth>=layer.width&&layer.sheetHeight>=layer.height);}
+    for(const layer of visual.layers||[]){assert.ok(fs.existsSync(path.join(projectRoot,layer.src)));assert.ok(layer.width>0&&layer.height>0&&layer.sheetWidth>=layer.width&&layer.sheetHeight>=layer.height);}
   }
   assert.ok(JSON.parse(text('assets/credits.json')).every(c=>c.license&&c.source));
 });
@@ -505,7 +506,7 @@ test('workspace collapse persists when adding without scrolling, including pendi
 });
 
 test('Dexalin Plus automatically lists oxygen, plasma, carbon and iron and preserves steps',()=>{
-  const {WorkbenchChemistry}=require('./chemistry.js');
+  const {WorkbenchChemistry}=require('../src/features/recipes/chemistry.js');
   const result=WorkbenchChemistry.expand(byId.get('reaction:DexalinPlus'),3,data);
   assert.deepEqual(result.ingredients.map(i=>i.id),['Oxygen','Plasma','Carbon','Iron']);
   assert.deepEqual(result.ingredients.map(i=>i.amount),[2,1,3,3]);
@@ -521,7 +522,7 @@ test('Dexalin Plus automatically lists oxygen, plasma, carbon and iron and prese
 });
 
 test('chemical expansion merges repeated materials, keeps catalyst roles and terminates cycles',()=>{
-  const {WorkbenchChemistry}=require('./chemistry.js');
+  const {WorkbenchChemistry}=require('../src/features/recipes/chemistry.js');
   const item=(id,amount=1,catalyst=false)=>({key:'reagent:'+id,id,name:id,amount,catalyst,unit:'ед.'});
   const recipe=(id,ingredients)=>({id:'reaction:'+id,prototype:id,ingredients,outputs:[item(id)],conditions:[]});
   const root=recipe('Final',[item('A'),item('B'),item('Iron',2)]);
@@ -592,7 +593,7 @@ test('workspace height accepts 2000 pixels without a cap and restores after relo
     assert.equal(a.doc.querySelector('#viewport').style.height,'2000px');
     assert.equal(a.doc.querySelector('.workspace').classList.contains('is-tall'),true);
     height=a.w.localStorage.getItem('ss14-workspace-height');assert.equal(height,'2000');
-    assert.match(text('enhancements.css'),/\.workspace #viewport\{[^}]*max-height:none/);
+    assert.match(text('src/styles/enhancements.css'),/\.workspace #viewport\{[^}]*max-height:none/);
     a.click('#toggle-workspace');a.click('#workspace-jump');assert.equal(a.doc.querySelector('#workspace-content').hidden,false);
     assert.equal(a.doc.querySelector('#viewport').style.height,'2000px');
   }finally{a.close();}
@@ -660,7 +661,7 @@ test('player guide keeps attribution, stock amounts, original numbering and all 
     const guide=a.w.PLAYER_GUIDES[0];assert.equal(guide.author,'Травница Луна');assert.equal(guide.stock.length,18);
     assert.equal(guide.stock.find(s=>s.name==='углерод').amount,800);
     assert.deepEqual(Array.from(guide.sections,s=>s.id),['1','1.1','2','3','4','5','5.1','6','8','9','end']);
-    assert.ok(fs.existsSync(path.join(__dirname,guide.source)));
+    assert.ok(fs.existsSync(path.join(projectRoot,guide.source)));
     const paragraphs=guide.sections.flatMap(s=>s.blocks.flatMap(b=>b.paragraphs)).join(' ');
     assert.match(paragraphs,/4 секунды/);assert.match(paragraphs,/1000унц/);assert.match(paragraphs,/30 сек/);
     for(const section of guide.sections)for(const block of section.blocks)if(block.recipeId)assert.ok(byId.has(block.recipeId),block.recipeId);
@@ -741,7 +742,7 @@ test('chemistry defaults to 200 output, exposes staged doses and persists step p
 });
 
 test('chef menu picks ten unique finished dishes from varied groups and excludes existing dishes',()=>{
-  const {ChefMenu}=require('./chef-menu.js');
+  const {ChefMenu}=require('../src/features/recipes/chef-menu.js');
   const first=ChefMenu.pickMenu(data.recipes,10,[],()=>.5);assert.equal(first.length,10);
   assert.equal(new Set(first.map(r=>r.outputs[0].key)).size,10);assert.ok(new Set(first.map(r=>r.group)).size>=8);
   assert.ok(first.every(r=>r.id.startsWith('microwave:')&&r.category==='food'&&!r.note));
