@@ -25,7 +25,9 @@
     root.querySelectorAll('[data-med-level]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.medLevel===level)));
     $('med-count').textContent=`${injury?injuries[injury]:'Все повреждения'} · ${items.length} препаратов${injury?' · сначала наиболее узкое назначение':''}`;
     $('med-results').innerHTML=items.map(m=>{
-      const recipe=(window.RECIPE_DATA?.byOutput['reagent:'+m.id]||[])[0];
+      const key='reagent:'+m.id;
+      const candidates=(window.RECIPE_DATA?.byOutput[key]||[]).map(id=>window.RECIPE_DATA.recipes.find(r=>r.id===id)).filter(r=>r?.outputs.some(o=>o.key===key));
+      const recipe=(candidates.find(r=>r.category==='chem'&&r.outputs[0]?.key===key)||candidates.find(r=>r.category==='chem')||candidates[0])?.id;
       return window.MedicineCard.render({m,recipe,targets,injuries,injury,conditions});
     }).join('')||'<div class="med-empty"><h3>Нет подходящих лекарств</h3><p>Выберите «Все лекарства» или сбросьте фильтры.</p></div>';
   }
